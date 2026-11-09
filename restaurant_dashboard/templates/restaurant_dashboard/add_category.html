@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="category-form-page">
+
+    <div class="category-form-header">
+
+        <h1>
+            Add Category
+        </h1>
+
+        <p>
+            Create a category for your restaurant menu.
+        </p>
+
+    </div>
+
+
+    <form
+        method="POST"
+        class="category-form"
+    >
+
+        {% csrf_token %}
+
+
+        <div class="form-group">
+
+            <label for="restaurant">
+                Restaurant
+            </label>
+
+            <select
+                name="restaurant"
+                id="restaurant"
+                class="form-control"
+                required
+            >
+
+                <option value="">
+                    Select Restaurant
+                </option>
+
+                {% for restaurant in restaurants %}
+
+                    <option value="{{ restaurant.id }}">
+                        {{ restaurant.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="name">
+                Category Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="e.g. Burgers"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea
+                name="description"
+                id="description"
+                class="form-control"
+                rows="4"
+                placeholder="Describe this category"
+            ></textarea>
+
+        </div>
+
+
+        <div class="category-form-actions">
+
+            <a
+                href="{% url 'category_management' %}"
+                class="cancel-category-btn"
+            >
+                Cancel
+            </a>
+
+            <button
+                type="submit"
+                class="save-category-btn"
+            >
+                Create Category
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

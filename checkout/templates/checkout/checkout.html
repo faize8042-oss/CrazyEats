@@ -1,0 +1,588 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout | CrazyEats</title>
+
+    <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a href="/" class="logo">
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a href="{% url 'profile' %}" class="login-btn">
+                Profile
+            </a>
+
+            <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit"   class="signup-btn">
+                Logout
+            </button></form>
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     CHECKOUT
+========================================== -->
+
+<section class="checkout-page">
+
+    <div class="container">
+
+        <h1>
+            Checkout
+        </h1>
+
+
+        <div class="checkout-layout">
+
+
+            <!-- ==================================
+                 CUSTOMER INFORMATION
+            =================================== -->
+
+            <form
+                    method="POST"
+                    class="checkout-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- GENERAL ERROR -->
+
+                {% if error %}
+
+                <div class="checkout-error">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- MINIMUM ORDER ERROR -->
+
+                {% if minimum_order_error %}
+
+                <div class="checkout-error">
+
+                    <strong>
+                        Minimum Order Not Reached
+                    </strong>
+
+                    <p>
+                        This restaurant requires a minimum
+                        order of {{ currency }} {{ restaurant.minimum_order }}.
+                    </p>
+
+                    <p>
+                        Your current subtotal is
+                        {{ currency }} {{ subtotal }}.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                <h2>
+                    Delivery Information
+                </h2>
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="full_name">
+                        Full Name
+                    </label>
+
+                    <input
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            value="{{ request.user.get_full_name }}"
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="03XXXXXXXXX"
+                            value="{{ request.POST.phone }}"
+                            required
+                    >
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Delivery Address
+                    </label>
+
+                    <textarea
+                            id="address"
+                            name="address"
+                            rows="4"
+                            placeholder="Enter your complete delivery address"
+                            required
+                    >{{ request.POST.address }}</textarea>
+
+                </div>
+
+
+                <!-- CITY AND POSTAL CODE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City
+                        </label>
+
+                        <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="Lahore"
+                                value="{{ request.POST.city }}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="postal_code">
+                            Postal Code
+                        </label>
+
+                        <input
+                                type="text"
+                                id="postal_code"
+                                name="postal_code"
+                                placeholder="54000"
+                                value="{{ request.POST.postal_code }}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DELIVERY INSTRUCTIONS -->
+
+                <div class="form-group">
+
+                    <label for="instructions">
+                        Delivery Instructions
+                    </label>
+
+                    <textarea
+                            id="instructions"
+                            name="instructions"
+                            rows="3"
+                            placeholder="Example: Please call when you arrive."
+                    >{{ request.POST.instructions }}</textarea>
+
+                </div>
+
+
+                <!-- ==================================
+                     PAYMENT METHOD
+                =================================== -->
+
+                <h2 class="payment-heading">
+                    Payment Method
+                </h2>
+
+
+                <div class="payment-options">
+
+
+                    <!-- CASH ON DELIVERY -->
+
+                    <label class="payment-option">
+
+                        <input
+                                type="radio"
+                                name="payment_method"
+                                value="cod"
+                                checked
+                        >
+
+                        <div>
+
+                            <strong>
+                                Cash on Delivery
+                            </strong>
+
+                            <p>
+                                Pay when your order arrives.
+                            </p>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- ONLINE PAYMENT -->
+
+                    <label class="payment-option">
+
+                        <input
+                                type="radio"
+                                name="payment_method"
+                                value="online" disabled
+                        >
+
+                        <div>
+
+                            <strong>
+                                Online Payment
+                            </strong>
+
+                            <p>
+                                Online payment will be available soon.
+                            </p>
+
+                        </div>
+
+                    </label>
+
+
+                </div>
+
+
+                <!-- ==================================
+                     PLACE ORDER BUTTON
+                =================================== -->
+
+                {% if not minimum_order_error %}
+
+                <button
+                        type="submit"
+                        class="place-order-btn"
+                >
+                    Place Order
+                </button>
+
+                {% endif %}
+
+
+            </form>
+
+
+            <!-- ==================================
+                 ORDER SUMMARY
+            =================================== -->
+
+            <div class="checkout-summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <!-- RESTAURANT -->
+
+                {% if restaurant %}
+
+                <div class="checkout-restaurant">
+
+                    <strong>
+                        {{ restaurant.name }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- CART ITEMS -->
+
+                <div class="checkout-items">
+
+
+                    {% for item in cart_items %}
+
+                    <div class="checkout-item">
+
+                        <div>
+
+                            <h4>
+                                {{ item.food.name }}
+                            </h4>
+
+                            <span>
+            Qty: {{ item.quantity }}
+        </span>
+
+                            <p class="checkout-item-price">
+
+                                {% if item.food.discount_price %}
+
+                                {{ currency }} {{ item.food.discount_price|floatformat:2 }}
+                                each
+
+                                {% else %}
+
+                                {{ currency }} {{ item.food.price|floatformat:2 }}
+                                each
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <strong>
+
+                            {% if item.food.discount_price %}
+
+                            {{ currency }} {{ item.food.discount_price|floatformat:2 }}
+
+                            {% else %}
+
+                            {{ currency }} {{ item.food.price|floatformat:2 }}
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p>
+                        Your cart is empty.
+                    </p>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- SUBTOTAL -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ subtotal|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <!-- DISCOUNT -->
+
+                {% if discount > 0 %}
+
+                <div class="summary-row discount-row">
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <strong>
+                        - {{ currency }} {{ discount|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- DELIVERY FEE -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ delivery_fee|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- TOTAL -->
+
+                <div class="checkout-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ total|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    Home
+                </p>
+
+                <p>
+                    Restaurants
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <p>
+                    Contact us anytime.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

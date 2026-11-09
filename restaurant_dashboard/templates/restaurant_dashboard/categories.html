@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="category-management">
+
+    <div class="category-header">
+
+        <div>
+
+            <h1>
+                Category Management
+            </h1>
+
+            <p>
+                Organize your restaurant menu into categories.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'add_category' %}"
+            class="add-category-btn"
+        >
+            + Add Category
+        </a>
+
+    </div>
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    {% if categories %}
+
+        <div class="category-grid">
+
+            {% for category in categories %}
+
+                <div class="category-card">
+
+                    <div class="category-icon">
+                        🍽️
+                    </div>
+
+                    <div class="category-content">
+
+                        <span class="category-restaurant">
+                            {{ category.restaurant.name }}
+                        </span>
+
+                        <h2>
+                            {{ category.name }}
+                        </h2>
+
+                        {% if category.description %}
+
+                            <p>
+                                {{ category.description }}
+                            </p>
+
+                        {% endif %}
+
+                        <span class="category-food-count">
+
+                            {{ category.foods.count }}
+                            food item{{ category.foods.count|pluralize }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-category">
+
+            <div class="empty-category-icon">
+                🍽️
+            </div>
+
+            <h2>
+                No Categories Yet
+            </h2>
+
+            <p>
+                Create your first category to organize your menu.
+            </p>
+
+            <a
+                href="{% url 'add_category' %}"
+                class="add-category-btn"
+            >
+                + Create Category
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,14815 @@
+/* ================================
+   GLOBAL SETTINGS
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+    --primary:#ff5722;
+    --secondary:#ff9800;
+    --dark:#222;
+    --light:#f8f9fa;
+    --text:#333;
+
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    background:var(--light);
+
+    color:var(--text);
+
+}
+
+
+.container{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+}
+
+
+
+/* ================================
+        NAVBAR
+================================ */
+
+
+.navbar{
+
+    background:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+}
+
+
+
+.navbar .container{
+
+    height:85px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+
+.logo{
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:35px;
+
+    list-style:none;
+
+}
+
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+.nav-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+
+.login-btn{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:500;
+
+}
+
+
+
+.signup-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+
+.signup-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* ================================
+        HERO SECTION
+================================ */
+
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #ff6b35,
+        #ff9800
+    );
+
+}
+
+
+
+.hero-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+
+
+.hero-left{
+
+    padding-right:20px;
+
+}
+
+
+
+.badge{
+
+    display:inline-block;
+
+    background:white;
+
+    color:var(--primary);
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+
+
+.hero-left h1{
+
+    margin:25px 0;
+
+    font-size:65px;
+
+    line-height:1.1;
+
+    max-width:650px;
+
+    color:white;
+
+}
+
+
+
+.hero-left h1 span{
+
+    color:#fff3cd;
+
+}
+
+
+
+.hero-left p{
+
+    max-width:550px;
+
+    color:white;
+
+    font-size:20px;
+
+    line-height:1.7;
+
+}
+
+
+
+/* Hero Image */
+
+.hero-right{
+
+    text-align:center;
+
+}
+
+
+
+.hero-right img{
+
+    width:100%;
+
+    max-width:550px;
+
+    animation:float 4s infinite ease-in-out;
+
+}
+
+
+
+/* Floating Animation */
+
+
+@keyframes float{
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
+
+
+
+/* ================================
+        SEARCH BOX
+================================ */
+
+
+.search-box{
+
+    display:flex;
+
+    max-width:650px;
+
+    margin:35px 0;
+
+    background:white;
+
+    overflow:hidden;
+
+    border-radius:60px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.15);
+
+}
+
+
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:20px 30px;
+
+    font-size:17px;
+
+}
+
+
+
+.search-box button{
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:20px 40px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.search-box button:hover{
+
+    background:#e64a19;
+
+}
+
+
+
+/* Popular Search */
+
+.popular-searches{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    color:white;
+
+}
+
+
+
+.popular-searches a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+
+.popular-searches a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+/* ================================
+        SECTION HEADINGS
+================================ */
+
+
+section h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:60px;
+
+}
+
+
+
+/* ================================
+        CATEGORY SECTION
+================================ */
+
+
+.categories{
+
+    padding:100px 0;
+
+}
+
+
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:30px;
+
+}
+
+
+
+.category-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+
+
+.category-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:
+    0 20px 35px rgba(0,0,0,.15);
+
+}
+
+
+
+.category-card .icon{
+
+    font-size:55px;
+
+}
+
+
+
+.category-card h3{
+
+    margin-top:20px;
+
+}
+
+
+
+/* ================================
+        RESTAURANTS
+================================ */
+
+
+.restaurants{
+
+    padding:100px 0;
+
+}
+
+
+
+.restaurant-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+}
+
+
+
+.restaurant-card{
+
+    background:white;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+
+
+.restaurant-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+
+.restaurant-card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+}
+
+
+
+.restaurant-info{
+
+    padding:25px;
+
+}
+
+
+
+.restaurant-info h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.restaurant-info p{
+
+    color:#777;
+
+}
+
+/* ================================
+        Popular Foods
+================================ */
+/* ================================
+        POPULAR FOODS
+================================ */
+
+.foods{
+
+    padding:100px 0;
+
+    background:#fff;
+
+}
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-header h2{
+
+    margin-bottom:10px;
+
+}
+
+.section-header p{
+
+    color:#777;
+
+    font-size:18px;
+
+}
+
+.food-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+}
+
+.food-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.food-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.food-card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+}
+
+.food-info{
+
+    padding:25px;
+
+}
+
+.food-info h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.food-info p{
+
+    color:#777;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+
+}
+
+.food-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.price{
+
+    color:var(--primary);
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.food-footer button{
+
+    background:var(--primary);
+
+    color:white;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.food-footer button:hover{
+
+    background:#e64a19;
+
+}
+/* ================================
+          Today's Offer
+================================ */
+/* ================================
+        TODAY'S OFFERS
+================================ */
+
+.offers{
+
+    padding:100px 0;
+
+    background:#fff5f0;
+
+}
+
+.offer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:35px;
+
+}
+
+.offer-card{
+
+    background:linear-gradient(135deg,#ff5722,#ff9800);
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.offer-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.offer-card h3{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+
+}
+
+.offer-card p{
+
+    margin-bottom:25px;
+
+    line-height:1.6;
+
+}
+
+.offer-btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:white;
+
+    color:var(--primary);
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.offer-btn:hover{
+
+    background:#f5f5f5;
+
+}
+/* ================================
+        FOOTER
+================================ */
+
+
+footer{
+
+    background:#222;
+
+    color:white;
+
+    padding:70px 0;
+
+}
+
+
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:40px;
+
+}
+
+
+
+footer p{
+
+    color:#ccc;
+
+    margin-top:12px;
+
+}
+
+
+
+/* ================================
+        RESPONSIVE DESIGN
+================================ */
+
+
+@media(max-width:992px){
+
+
+.navbar .container{
+
+    flex-direction:column;
+
+    height:auto;
+
+    padding:20px 0;
+
+}
+
+
+
+.nav-links{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+
+
+.hero-container{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+
+
+.hero-left{
+
+    padding:0;
+
+}
+
+
+
+.hero-left h1{
+
+    font-size:45px;
+
+}
+
+
+
+.hero-left p{
+
+    margin:auto;
+
+}
+
+
+
+.search-box{
+
+    margin:35px auto;
+
+}
+
+
+
+.popular-searches{
+
+    justify-content:center;
+
+}
+
+
+
+.hero-right{
+
+    margin-top:40px;
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.hero-left h1{
+
+    font-size:35px;
+
+}
+
+
+
+.search-box{
+
+    flex-direction:column;
+
+    border-radius:20px;
+
+}
+
+
+
+.search-box button{
+
+    width:100%;
+
+}
+
+
+
+section h2{
+
+    font-size:32px;
+
+}
+
+
+}
+
+/* ================================
+        Features
+================================ */
+.features{
+
+padding:100px 0;
+
+background:#fafafa;
+
+}
+
+.feature-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+}
+
+.feature-card{
+
+background:white;
+
+padding:35px;
+
+text-align:center;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.feature-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.feature-icon{
+
+font-size:50px;
+
+margin-bottom:20px;
+
+}
+/* ================================
+        Testimonials
+================================ */
+.testimonials{
+
+padding:100px 0;
+
+}
+
+.testimonial-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+}
+
+.testimonial-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+/* ================================
+        Download
+================================ */
+.download-app{
+
+padding:100px 0;
+
+background:#fff5f0;
+
+}
+
+.download-container{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+align-items:center;
+
+gap:60px;
+
+}
+
+.download-container img{
+
+width:100%;
+
+border-radius:20px;
+
+}
+
+.download-buttons{
+
+margin-top:30px;
+
+display:flex;
+
+gap:20px;
+
+}
+
+.download-buttons button{
+
+padding:15px 25px;
+
+border:none;
+
+background:#ff5722;
+
+color:white;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+/* ================================
+        Newsletter
+================================ */
+.newsletter{
+
+padding:100px 0;
+
+text-align:center;
+
+}
+
+.newsletter-form{
+
+margin-top:30px;
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.newsletter-form input{
+
+padding:18px;
+
+width:350px;
+
+border:1px solid #ddd;
+
+border-radius:30px;
+
+}
+
+.newsletter-form button{
+
+padding:18px 30px;
+
+background:#ff5722;
+
+color:white;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+
+/* ================================
+        AUTHENTICATION
+================================ */
+
+.auth-section{
+
+    padding:100px 20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.auth-container{
+
+    width:100%;
+    max-width:500px;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+}
+
+.auth-container h2{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.auth-container > p{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+.auth-container form p{
+
+    margin-bottom:18px;
+
+}
+
+.auth-container label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.auth-container input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+.auth-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.auth-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.auth-link{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.errorlist{
+
+    color:red;
+
+    list-style:none;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+}
+
+.helptext{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#777;
+
+    margin-top:5px;
+
+}
+
+.auth-container hr{
+
+    margin:20px 0;
+
+    border:none;
+
+    border-top:1px solid #ddd;
+
+}
+
+.nav-buttons span{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+/* ================================
+        PROFILE
+================================ */
+
+.profile-section{
+
+    padding:80px 0;
+
+}
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.profile-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:36px;
+
+    font-weight:700;
+
+}
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:30px;
+
+}
+
+.profile-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.profile-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.profile-card hr{
+
+    margin-bottom:20px;
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+}
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.stat-box{
+
+    background:#fafafa;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+.stat-box h2{
+
+    color:var(--primary);
+
+    margin-bottom:10px;
+
+}
+
+.action-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.profile-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.profile-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.logout-btn{
+
+    background:#dc3545;
+
+}
+
+.logout-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+@media(max-width:768px){
+
+.profile-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.profile-header{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.stats{
+
+    grid-template-columns:1fr;
+
+}
+
+.action-buttons{
+
+    flex-direction:column;
+
+}
+
+.profile-btn{
+
+    text-align:center;
+
+}
+
+}
+
+/* ================================
+        RESTAURANT PAGE
+================================ */
+
+.restaurants-page{
+
+padding:80px 0;
+
+}
+
+.restaurant-search{
+
+display:flex;
+
+gap:15px;
+
+margin:40px 0;
+
+}
+
+.restaurant-search input{
+
+flex:1;
+
+padding:15px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+}
+
+.restaurant-search button{
+
+background:var(--primary);
+
+color:white;
+
+border:none;
+
+padding:15px 30px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+.restaurant-filters{
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-bottom:40px;
+
+}
+
+.restaurant-filters button{
+
+padding:10px 20px;
+
+border:none;
+
+background:#eee;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+
+.restaurant-filters .active{
+
+background:var(--primary);
+
+color:white;
+
+}
+
+.restaurant-btn{
+
+display:inline-block;
+
+margin-top:15px;
+
+padding:12px 24px;
+
+background:var(--primary);
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+transition:.3s;
+
+}
+
+.restaurant-btn:hover{
+
+background:#e64a19;
+
+}
+
+/* ================================
+        RESTAURANT DETAILS
+================================ */
+
+.restaurant-banner{
+
+    background:linear-gradient(135deg,#ff5722,#ff9800);
+
+    color:white;
+
+    padding:80px 0;
+
+}
+
+.banner-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.banner-content h1{
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+.banner-content p{
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.restaurant-menu{
+
+    padding:80px 0;
+
+}
+
+.menu-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:35px;
+
+    margin-top:50px;
+
+}
+
+.menu-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.menu-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.menu-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.menu-info{
+
+    padding:25px;
+
+}
+
+.menu-info h3{
+
+    margin-bottom:15px;
+
+}
+
+.menu-info p{
+
+    color:#777;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+
+}
+
+.menu-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.menu-footer span{
+
+    color:var(--primary);
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.menu-footer button{
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.menu-footer button:hover{
+
+    background:#e64a19;
+
+}
+
+@media(max-width:768px){
+
+.banner-content{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.banner-content h1{
+
+    font-size:36px;
+
+}
+
+}
+
+/* ================================
+        CART
+================================ */
+
+.cart-page{
+
+    padding:80px 0;
+
+}
+
+.cart-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:40px;
+
+    margin-top:40px;
+
+}
+
+.cart-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.cart-item{
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.cart-item img{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:15px;
+
+    object-fit:cover;
+
+}
+
+.cart-info{
+
+    flex:1;
+
+}
+
+.cart-info h3{
+
+    margin-bottom:10px;
+
+}
+
+.cart-info p{
+
+    color:#777;
+
+    margin-bottom:10px;
+
+}
+
+.cart-info span{
+
+    color:var(--primary);
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.quantity{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.quantity button{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.remove-btn{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+}
+
+.cart-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    height:fit-content;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:20px 0;
+
+}
+
+.total{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:var(--primary);
+
+}
+
+.checkout-btn{
+
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-top:30px;
+
+    transition:.3s;
+
+}
+
+.checkout-btn:hover{
+
+    background:#e64a19;
+
+}
+
+@media(max-width:900px){
+
+.cart-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+.cart-item{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+}
+
+/* ================================
+        CHECKOUT
+================================ */
+
+.checkout-page{
+
+    padding:80px 0;
+
+}
+
+.checkout-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:40px;
+
+    margin-top:40px;
+
+}
+
+.checkout-form{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.checkout-form h2{
+
+    margin-bottom:25px;
+
+}
+
+.checkout-form label{
+
+    display:block;
+
+    margin-top:20px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.checkout-form input,
+
+.checkout-form textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.checkout-form textarea{
+
+    resize:vertical;
+
+}
+
+.payment-options{
+
+    margin-top:20px;
+
+}
+
+.payment-options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+    font-weight:normal;
+
+}
+
+.payment-options input{
+
+    width:auto;
+
+}
+
+.place-order-btn{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.place-order-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.order-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    height:fit-content;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:18px 0;
+
+}
+
+.total{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:var(--primary);
+
+}
+
+@media(max-width:900px){
+
+.checkout-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/* ================================
+        ORDERS
+================================ */
+
+.orders-page{
+
+    padding:80px 0;
+
+}
+
+.orders-list{
+
+    margin-top:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+.order-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.order-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.status{
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.preparing{
+
+    background:#ff9800;
+
+}
+
+.delivered{
+
+    background:#28a745;
+
+}
+
+.order-body p{
+
+    margin:10px 0;
+
+}
+
+.order-footer{
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.order-btn,
+
+.track-btn{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:var(--primary);
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.track-btn{
+
+    background:#2196f3;
+
+}
+
+.order-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.track-btn:hover{
+
+    background:#1976d2;
+
+}
+
+@media(max-width:768px){
+
+.order-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+}
+
+/* ================================
+        ORDER TRACKING
+================================ */
+
+.tracking-page{
+
+    padding:80px 0;
+
+}
+
+.tracking-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:35px;
+
+    margin-top:40px;
+
+}
+
+.tracking-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.timeline{
+
+    list-style:none;
+
+    margin-top:25px;
+
+}
+
+.timeline li{
+
+    padding:15px 0;
+
+    border-left:4px solid #ddd;
+
+    padding-left:20px;
+
+    margin-left:10px;
+
+    font-size:18px;
+
+}
+
+.timeline .completed{
+
+    border-color:#28a745;
+
+    color:#28a745;
+
+    font-weight:600;
+
+}
+
+.timeline .active{
+
+    border-color:#ff9800;
+
+    color:#ff9800;
+
+    font-weight:600;
+
+}
+
+.rider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin:25px 0;
+
+}
+
+.rider-avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.contact-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    text-decoration:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.contact-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.map-placeholder{
+
+    margin-top:40px;
+
+}
+
+.map-box{
+
+    margin-top:20px;
+
+    height:350px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#666;
+
+    font-size:20px;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+@media(max-width:900px){
+
+.tracking-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/* ================================
+        RESTAURANT DASHBOARD
+================================ */
+
+.restaurant-dashboard{
+
+    padding:80px 0;
+
+}
+
+.dashboard-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin:40px 0;
+
+}
+
+.dashboard-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card h2{
+
+    color:var(--primary);
+
+    font-size:36px;
+
+    margin-bottom:10px;
+
+}
+
+.dashboard-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+}
+
+.dashboard-panel{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.dashboard-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.dashboard-table th,
+.dashboard-table td{
+
+    padding:15px;
+
+    text-align:left;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.popular-food-list{
+
+    list-style:none;
+
+    margin-top:20px;
+
+}
+
+.popular-food-list li{
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+@media(max-width:900px){
+
+.dashboard-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboard-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+}
+
+/* ================================
+        MENU MANAGEMENT
+================================ */
+
+.menu-management{
+
+    padding:80px 0;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.add-food-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 24px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.add-food-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.menu-table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+.menu-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.menu-table th{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+.menu-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #eee;
+
+    vertical-align:middle;
+
+}
+
+.menu-table img{
+
+    width:70px;
+
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+.available{
+
+    background:#28a745;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.unavailable{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.edit-btn{
+
+    background:#2196f3;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:8px 16px;
+
+    border-radius:8px;
+
+    margin-right:8px;
+
+    display:inline-block;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:8px 16px;
+
+    border-radius:8px;
+
+    display:inline-block;
+
+}
+
+.edit-btn:hover{
+
+    background:#1976d2;
+
+}
+
+.delete-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+@media(max-width:768px){
+
+.page-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.menu-table th,
+
+.menu-table td{
+
+    padding:12px;
+
+}
+
+}
+
+/* ================================
+        ADD FOOD
+================================ */
+
+.food-form-section{
+
+    padding:80px 0;
+
+}
+
+.food-form-card{
+
+    max-width:750px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.food-form-card h1{
+
+    margin-bottom:30px;
+
+}
+
+.food-form-card label{
+
+    display:block;
+
+    margin-top:20px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.food-form-card input[type=text],
+
+.food-form-card input[type=number],
+
+.food-form-card input[type=file],
+
+.food-form-card textarea,
+
+.food-form-card select{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+.food-form-card textarea{
+
+    resize:vertical;
+
+}
+
+.checkbox-group{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.checkbox-group input{
+
+    width:auto;
+
+}
+
+.form-buttons{
+
+    margin-top:35px;
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.form-buttons button{
+
+    background:var(--primary);
+
+    color:white;
+
+    border:none;
+
+    padding:14px 28px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.form-buttons button:hover{
+
+    background:#e64a19;
+
+}
+
+.cancel-btn{
+
+    background:#6c757d;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 28px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.cancel-btn:hover{
+
+    background:#495057;
+
+}
+
+@media(max-width:768px){
+
+.food-form-card{
+
+    padding:25px;
+
+}
+
+.form-buttons{
+
+    flex-direction:column;
+
+}
+
+.form-buttons button,
+
+.cancel-btn{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+}
+
+/* ================================
+        DELETE FOOD
+================================ */
+
+.delete-section{
+
+    padding:80px 0;
+
+}
+
+.delete-card{
+
+    max-width:650px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.warning-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.delete-card h1{
+
+    margin-bottom:20px;
+
+}
+
+.delete-warning{
+
+    color:#dc3545;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+}
+
+.food-preview{
+
+    margin:30px 0;
+
+}
+
+.food-preview img{
+
+    width:220px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+}
+
+.food-preview h3{
+
+    margin-bottom:10px;
+
+}
+
+.delete-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+
+}
+
+.delete-food-btn{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.delete-food-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+@media(max-width:768px){
+
+.delete-card{
+
+    padding:25px;
+
+}
+
+.delete-buttons{
+
+    flex-direction:column;
+
+}
+
+.delete-food-btn,
+
+.cancel-btn{
+
+    width:100%;
+
+}
+
+}
+
+/* ================================
+        ADMIN DASHBOARD
+================================ */
+
+.admin-dashboard{
+
+    padding:80px 0;
+
+}
+
+.admin-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin:40px 0;
+
+}
+
+.admin-card{
+
+    background:white;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.admin-card h2{
+
+    color:var(--primary);
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.quick-actions{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
+}
+
+.action-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 24px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.action-btn:hover{
+
+    background:#e64a19;
+
+}
+
+.admin-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+}
+
+.admin-panel{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.admin-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.admin-table th,
+
+.admin-table td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:left;
+
+}
+
+.admin-list{
+
+    list-style:none;
+
+    margin-top:20px;
+
+}
+
+.admin-list li{
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+@media(max-width:900px){
+
+.admin-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+.admin-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+.quick-actions{
+
+    flex-direction:column;
+
+}
+
+.action-btn{
+
+    text-align:center;
+
+}
+
+}
+
+/* ================================
+        USER MANAGEMENT
+================================ */
+
+.admin-users{
+
+    padding:80px 0;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.search-input{
+
+    width:320px;
+
+    padding:14px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+.users-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.users-table th{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+.users-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.status-active{
+
+    background:#28a745;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-blocked{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.view-btn,
+
+.block-btn,
+
+.delete-btn{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    margin-right:8px;
+
+    display:inline-block;
+
+    margin-bottom:6px;
+
+}
+
+.view-btn{
+
+    background:#2196f3;
+
+}
+
+.block-btn{
+
+    background:#ff9800;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+}
+
+.view-btn:hover{
+
+    background:#1976d2;
+
+}
+
+.block-btn:hover{
+
+    background:#f57c00;
+
+}
+
+.delete-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+@media(max-width:768px){
+
+.search-input{
+
+    width:100%;
+
+}
+
+.page-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+}
+
+/* ================================
+        RESTAURANT MANAGEMENT
+================================ */
+
+.admin-restaurants{
+
+    padding:80px 0;
+
+}
+
+.restaurants-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.restaurants-table th{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+.restaurants-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.status-approved{
+
+    background:#28a745;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-pending{
+
+    background:#ff9800;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-rejected{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.approve-btn,
+
+.reject-btn,
+
+.delete-btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    margin-right:8px;
+
+    margin-bottom:6px;
+
+}
+
+.approve-btn{
+
+    background:#28a745;
+
+}
+
+.reject-btn{
+
+    background:#ff9800;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+}
+
+.approve-btn:hover{
+
+    background:#218838;
+
+}
+
+.reject-btn:hover{
+
+    background:#e68900;
+
+}
+
+.delete-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+@media(max-width:768px){
+
+.restaurants-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+}
+
+/* ================================
+        ORDER MANAGEMENT
+================================ */
+
+.admin-orders{
+
+    padding:80px 0;
+
+}
+
+.orders-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.orders-table th{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+.orders-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.status-pending{
+
+    background:#ff9800;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-preparing{
+
+    background:#2196f3;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-delivery{
+
+    background:#9c27b0;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.status-delivered{
+
+    background:#28a745;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+}
+
+.orders-table .view-btn{
+
+    background:#2196f3;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    margin-right:8px;
+
+}
+
+.orders-table .view-btn:hover{
+
+    background:#1976d2;
+
+}
+
+@media(max-width:768px){
+
+.orders-table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+}
+
+/* ================================
+        ANALYTICS DASHBOARD
+================================ */
+
+.analytics-page{
+
+    padding:80px 0;
+
+}
+
+.analytics-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin:40px 0;
+
+}
+
+.analytics-card{
+
+    background:white;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.analytics-card h2{
+
+    color:var(--primary);
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.analytics-layout{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-top:30px;
+
+}
+
+.analytics-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.chart-placeholder{
+
+    height:320px;
+
+    background:#f5f5f5;
+
+    border:2px dashed #ccc;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:20px;
+
+    border-radius:15px;
+
+    font-size:22px;
+
+    color:#777;
+
+}
+
+.analytics-list{
+
+    list-style:none;
+
+    margin-top:20px;
+
+}
+
+.analytics-list li{
+
+    padding:14px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+@media(max-width:900px){
+
+.analytics-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/* ==========================================
+   RESTAURANT STATUS
+========================================== */
+
+.restaurant-status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+.restaurant-status.open{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+}
+
+
+.restaurant-status.closed{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+}
+
+
+/* ==========================================
+   RESTAURANT BUTTON
+========================================== */
+
+.restaurant-btn{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:12px 22px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+
+.restaurant-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   RESTAURANT IMAGE PLACEHOLDER
+========================================== */
+
+.restaurant-placeholder{
+
+    width:100%;
+
+    height:230px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff1eb;
+
+    font-size:70px;
+
+}
+
+
+/* ==========================================
+   EMPTY RESTAURANTS
+========================================== */
+
+.empty-restaurants{
+
+    grid-column:1 / -1;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+.empty-restaurants h3{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+
+.empty-restaurants p{
+
+    color:#777;
+
+}
+
+/* ==========================================
+   RESTAURANT DETAIL HEADER
+========================================== */
+
+.restaurant-detail-header{
+
+    background:white;
+
+    padding-bottom:50px;
+
+}
+
+
+.restaurant-cover{
+
+    width:100%;
+
+    height:350px;
+
+    overflow:hidden;
+
+    border-radius:0 0 25px 25px;
+
+}
+
+
+.restaurant-cover img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.restaurant-header-content{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-top:30px;
+
+}
+
+
+.restaurant-logo{
+
+    width:130px;
+
+    height:130px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    border:5px solid white;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+}
+
+
+.restaurant-header-info{
+
+    flex:1;
+
+}
+
+
+.restaurant-header-info h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+
+.restaurant-header-info p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+
+}
+
+
+.restaurant-meta{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+    color:#555;
+
+}
+
+
+.restaurant-meta span{
+
+    background:#f8f9fa;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+}
+
+
+/* ==========================================
+   RESTAURANT MENU
+========================================== */
+
+.restaurant-menu{
+
+    padding:80px 0;
+
+}
+
+
+.restaurant-menu > .container > h2{
+
+    margin-bottom:50px;
+
+}
+
+
+.menu-category{
+
+    margin-bottom:60px;
+
+}
+
+
+.menu-category-heading{
+
+    margin-bottom:25px;
+
+}
+
+
+.menu-category-heading h3{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+
+.menu-category-heading p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   FOOD GRID
+========================================== */
+
+.food-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+.food-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+.food-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,.12);
+
+}
+
+
+.food-card > img{
+
+    width:100%;
+
+    height:210px;
+
+    object-fit:cover;
+
+}
+
+
+.food-placeholder{
+
+    width:100%;
+
+    height:210px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff1eb;
+
+    font-size:65px;
+
+}
+
+
+.food-info{
+
+    padding:22px;
+
+}
+
+
+.food-info h4{
+
+    font-size:21px;
+
+    margin-bottom:8px;
+
+}
+
+
+.food-info p{
+
+    color:#777;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+
+}
+
+
+.food-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.food-price{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.food-price strong{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+
+.old-price{
+
+    color:#999;
+
+    text-decoration:line-through;
+
+    font-size:14px;
+
+}
+
+
+.add-food-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.add-food-btn:hover{
+
+    background:#e64a19;
+
+}
+
+
+.no-food{
+
+    color:#777;
+
+    padding:20px 0;
+
+}
+
+
+.empty-menu{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:white;
+
+    border-radius:20px;
+
+}
+
+
+.empty-menu h3{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+
+.empty-menu p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE RESTAURANT DETAIL
+========================================== */
+
+@media(max-width:700px){
+
+    .restaurant-cover{
+
+        height:220px;
+
+    }
+
+
+    .restaurant-header-content{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+
+    .restaurant-header-info h1{
+
+        font-size:32px;
+
+    }
+
+
+    .restaurant-meta{
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ==========================================
+   CART PAGE
+========================================== */
+
+.cart-page{
+
+    padding:80px 0;
+
+}
+
+
+.cart-page h1{
+
+    font-size:42px;
+
+    margin-bottom:40px;
+
+}
+
+
+/* ==========================================
+   CART LAYOUT
+========================================== */
+
+.cart-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 380px;
+
+    gap:40px;
+
+    align-items:start;
+
+}
+
+
+/* ==========================================
+   CART ITEMS
+========================================== */
+
+.cart-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+.cart-item{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.07);
+
+    display:grid;
+
+    grid-template-columns:
+    100px 1fr auto auto auto;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+
+/* ==========================================
+   FOOD IMAGE
+========================================== */
+
+.cart-item-image img{
+
+    width:100px;
+
+    height:100px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+}
+
+
+.cart-food-placeholder{
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff1eb;
+
+    font-size:40px;
+
+}
+
+
+/* ==========================================
+   FOOD INFORMATION
+========================================== */
+
+.cart-item-info h3{
+
+    font-size:20px;
+
+    margin-bottom:5px;
+
+}
+
+
+.cart-restaurant{
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+
+.cart-price strong{
+
+    color:var(--primary);
+
+    font-size:18px;
+
+}
+
+
+.cart-price .old-price{
+
+    margin-right:8px;
+
+}
+
+
+/* ==========================================
+   QUANTITY
+========================================== */
+
+.quantity-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.quantity-btn{
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff1eb;
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+
+.quantity-btn:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+
+.quantity{
+
+    font-weight:600;
+
+    min-width:20px;
+
+    text-align:center;
+
+}
+
+
+/* ==========================================
+   ITEM TOTAL
+========================================== */
+
+.cart-item-total{
+
+    font-weight:700;
+
+    color:#333;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================
+   REMOVE
+========================================== */
+
+.remove-item{
+
+    color:#d32f2f;
+
+    text-decoration:none;
+
+    font-size:20px;
+
+    padding:5px;
+
+}
+
+
+.remove-item:hover{
+
+    color:#b71c1c;
+
+}
+
+
+/* ==========================================
+   CART SUMMARY
+========================================== */
+
+.cart-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+
+.cart-summary h2{
+
+    text-align:left;
+
+    font-size:25px;
+
+    margin-bottom:30px;
+
+}
+
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+    color:#555;
+
+}
+
+
+.summary-row strong{
+
+    color:#333;
+
+}
+
+
+.cart-summary hr{
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+    margin:25px 0;
+
+}
+
+
+.summary-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:22px;
+
+    margin-bottom:25px;
+
+}
+
+
+.summary-total strong{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   CHECKOUT BUTTON
+========================================== */
+
+.checkout-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.checkout-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+.continue-shopping{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
+
+
+/* ==========================================
+   EMPTY CART
+========================================== */
+
+.empty-cart{
+
+    text-align:center;
+
+    background:white;
+
+    padding:100px 20px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+}
+
+
+.empty-cart-icon{
+
+    font-size:80px;
+
+    margin-bottom:20px;
+
+}
+
+
+.empty-cart h2{
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+
+.empty-cart p{
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE CART
+========================================== */
+
+@media(max-width:1000px){
+
+    .cart-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .cart-summary{
+
+        position:static;
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .cart-item{
+
+        grid-template-columns:
+        80px 1fr;
+
+        gap:15px;
+
+    }
+
+
+    .cart-item-image img,
+    .cart-food-placeholder{
+
+        width:80px;
+
+        height:80px;
+
+    }
+
+
+    .quantity-controls{
+
+        grid-column:2;
+
+    }
+
+
+    .cart-item-total{
+
+        grid-column:2;
+
+    }
+
+
+    .remove-item{
+
+        position:absolute;
+
+        margin-left:calc(100% - 70px);
+
+    }
+
+}
+
+/* ==========================================
+   CHECKOUT PAGE
+========================================== */
+
+.checkout-page{
+
+    padding:80px 0;
+
+}
+
+
+.checkout-page > .container > h1{
+
+    font-size:42px;
+
+    margin-bottom:40px;
+
+}
+
+
+/* ==========================================
+   CHECKOUT LAYOUT
+========================================== */
+
+.checkout-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 400px;
+
+    gap:40px;
+
+    align-items:start;
+
+}
+
+
+/* ==========================================
+   CHECKOUT FORM
+========================================== */
+
+.checkout-form{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+}
+
+
+.checkout-form h2{
+
+    text-align:left;
+
+    font-size:27px;
+
+    margin-bottom:30px;
+
+}
+
+
+.form-group{
+
+    margin-bottom:22px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    transition:.2s;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 3px rgba(255,87,34,.1);
+
+}
+
+
+.form-group textarea{
+
+    resize:vertical;
+
+}
+
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+
+/* ==========================================
+   PAYMENT
+========================================== */
+
+.payment-heading{
+
+    margin-top:40px;
+
+}
+
+
+.payment-options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+
+.payment-option{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding:18px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.payment-option:hover{
+
+    border-color:var(--primary);
+
+    background:#fffaf7;
+
+}
+
+
+.payment-option input{
+
+    margin-top:4px;
+
+    accent-color:var(--primary);
+
+}
+
+
+.payment-option strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+}
+
+
+.payment-option p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   PLACE ORDER
+========================================== */
+
+.place-order-btn{
+
+    width:100%;
+
+    padding:17px;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.place-order-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   CHECKOUT SUMMARY
+========================================== */
+
+.checkout-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+
+.checkout-summary h2{
+
+    text-align:left;
+
+    font-size:25px;
+
+    margin-bottom:25px;
+
+}
+
+
+.checkout-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+.checkout-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+
+.checkout-item h4{
+
+    margin-bottom:5px;
+
+}
+
+
+.checkout-item span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.checkout-item strong{
+
+    white-space:nowrap;
+
+}
+
+
+.checkout-summary hr{
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+    margin:25px 0;
+
+}
+
+
+.checkout-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:22px;
+
+}
+
+
+.checkout-total strong{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE CHECKOUT
+========================================== */
+
+@media(max-width:1000px){
+
+    .checkout-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .checkout-summary{
+
+        position:static;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+        gap:0;
+
+    }
+
+
+    .checkout-form{
+
+        padding:25px 20px;
+
+    }
+
+
+    .checkout-summary{
+
+        padding:25px 20px;
+
+    }
+
+}
+
+/* ==========================================
+   CHECKOUT ERROR
+========================================== */
+
+.checkout-error{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    padding:15px 18px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+    border:1px solid #ffcdd2;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   ORDERS PAGE
+========================================== */
+
+.orders-page{
+
+    padding:80px 0;
+
+    min-height:70vh;
+
+}
+
+
+.orders-header{
+
+    margin-bottom:40px;
+
+}
+
+
+.orders-header h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+
+.orders-header p{
+
+    color:#777;
+
+    font-size:17px;
+
+}
+
+
+/* ==========================================
+   ORDERS LIST
+========================================== */
+
+.orders-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+.order-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+.order-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.1);
+
+}
+
+
+/* ==========================================
+   ORDER HEADER
+========================================== */
+
+.order-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.order-header h2{
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+
+.order-header p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   ORDER DETAIL PAGE
+========================================== */
+
+.order-detail-page{
+
+    padding:70px 0;
+
+    min-height:70vh;
+
+}
+
+
+/* ==========================================
+   TOP SECTION
+========================================== */
+
+.order-detail-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:40px;
+
+}
+
+
+.back-orders{
+
+    display:inline-block;
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    margin-bottom:15px;
+
+    font-weight:500;
+
+}
+
+
+.back-orders:hover{
+
+    text-decoration:underline;
+
+}
+
+
+.order-detail-top h1{
+
+    font-size:42px;
+
+    margin-bottom:8px;
+
+}
+
+
+.order-detail-top p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.order-detail-status{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   GRID
+========================================== */
+
+.order-detail-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 380px;
+
+    gap:30px;
+
+    align-items:start;
+
+}
+
+
+/* ==========================================
+   DETAIL CARD
+========================================== */
+
+.detail-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    margin-bottom:25px;
+
+}
+
+
+.detail-card h2{
+
+    text-align:left;
+
+    font-size:22px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   RESTAURANT
+========================================== */
+
+.restaurant-name{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   ORDER ITEMS
+========================================== */
+
+.detail-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+.detail-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.detail-item:last-child{
+
+    padding-bottom:0;
+
+    border-bottom:none;
+
+}
+
+
+.detail-item h3{
+
+    font-size:17px;
+
+    margin-bottom:6px;
+
+}
+
+
+.detail-item p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.detail-item strong{
+
+    color:var(--primary);
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================
+   DELIVERY INFORMATION
+========================================== */
+
+.delivery-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+.delivery-info div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+
+.delivery-info span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.delivery-info strong{
+
+    line-height:1.5;
+
+}
+
+
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.order-summary-detail{
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+
+.summary-line{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+    color:#555;
+
+}
+
+
+.summary-line strong{
+
+    color:#222;
+
+}
+
+
+.discount-line{
+
+    color:#2e7d32;
+
+}
+
+
+.discount-line strong{
+
+    color:#2e7d32;
+
+}
+
+
+.order-summary-detail hr{
+
+    border:none;
+
+    border-top:1px solid #eee;
+
+    margin:22px 0;
+
+}
+
+
+.summary-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+
+.summary-total strong{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   PAYMENT
+========================================== */
+
+.payment-status-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.payment-pending{
+
+    color:#856404;
+
+}
+
+
+.payment-paid{
+
+    color:#2e7d32;
+
+}
+
+
+.payment-failed{
+
+    color:#c62828;
+
+}
+
+
+/* ==========================================
+   CURRENT STATUS
+========================================== */
+
+.current-status{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+
+.status-dot{
+
+    width:14px;
+
+    height:14px;
+
+    background:var(--primary);
+
+    border-radius:50%;
+
+    margin-top:4px;
+
+    flex-shrink:0;
+
+}
+
+
+.current-status strong{
+
+    display:block;
+
+    margin-bottom:6px;
+
+}
+
+
+.current-status p{
+
+    color:#777;
+
+    line-height:1.5;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .order-detail-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .order-summary-detail{
+
+        position:static;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .order-detail-page{
+
+        padding:50px 0;
+
+    }
+
+
+    .order-detail-top{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+
+    .order-detail-top h1{
+
+        font-size:32px;
+
+    }
+
+
+    .detail-card{
+
+        padding:22px;
+
+    }
+
+
+    .detail-item{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+
+    .detail-item strong{
+
+        align-self:flex-end;
+
+    }
+
+}
+
+/* ==========================================
+   ORDER STATUS
+========================================== */
+
+.order-status span{
+
+    display:inline-block;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+.status-pending{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+}
+
+
+.status-confirmed{
+
+    background:#d1ecf1;
+
+    color:#0c5460;
+
+}
+
+
+.status-preparing{
+
+    background:#ffe5d0;
+
+    color:#c44d00;
+
+}
+
+
+.status-out_for_delivery{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+
+.status-delivered{
+
+    background:#d4edda;
+
+    color:#155724;
+
+}
+
+
+.status-cancelled{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+}
+
+
+/* ==========================================
+   RESTAURANT
+========================================== */
+
+.order-restaurant{
+
+    padding:20px 0;
+
+    font-size:18px;
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   ORDER ITEMS
+========================================== */
+
+.order-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.order-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    background:#fafafa;
+
+    border-radius:10px;
+
+}
+
+
+.order-item h4{
+
+    margin-bottom:5px;
+
+}
+
+
+.order-item p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   ORDER FOOTER
+========================================== */
+
+.order-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:1px solid #eee;
+
+}
+
+
+.order-footer div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.order-footer span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.order-footer strong{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+
+/* ==========================================
+   VIEW ORDER BUTTON
+========================================== */
+
+.view-order-btn{
+
+    display:inline-block;
+
+    padding:11px 22px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+
+.view-order-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   EMPTY ORDERS
+========================================== */
+
+.empty-orders{
+
+    background:white;
+
+    padding:80px 30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.empty-orders-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+
+.empty-orders h2{
+
+    margin-bottom:10px;
+
+    font-size:30px;
+
+}
+
+
+.empty-orders p{
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+
+.browse-btn{
+
+    display:inline-block;
+
+    padding:14px 25px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+
+.browse-btn:hover{
+
+    background:#e64a19;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE ORDERS
+========================================== */
+
+@media(max-width:600px){
+
+    .orders-page{
+
+        padding:50px 0;
+
+    }
+
+
+    .orders-header h1{
+
+        font-size:32px;
+
+    }
+
+
+    .order-card{
+
+        padding:20px;
+
+    }
+
+
+    .order-header{
+
+        align-items:flex-start;
+
+        gap:15px;
+
+        flex-direction:column;
+
+    }
+
+
+    .order-item{
+
+        gap:15px;
+
+    }
+
+
+    .order-footer{
+
+        align-items:flex-start;
+
+        gap:20px;
+
+        flex-direction:column;
+
+    }
+
+
+    .view-order-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}
+
+/* ==========================================
+   ORDER TRACKING
+========================================== */
+
+.tracking-page{
+
+    padding:70px 0;
+
+    min-height:70vh;
+
+}
+
+
+/* ==========================================
+   TRACKING HEADER
+========================================== */
+
+.tracking-header{
+
+    margin-bottom:35px;
+
+}
+
+
+.tracking-header h1{
+
+    font-size:42px;
+
+    margin-bottom:8px;
+
+}
+
+
+.tracking-header p{
+
+    color:#777;
+
+    font-size:17px;
+
+}
+
+
+/* ==========================================
+   RESTAURANT INFO
+========================================== */
+
+.tracking-restaurant{
+
+    background:white;
+
+    padding:25px 30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.tracking-restaurant span{
+
+    display:block;
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-bottom:6px;
+
+}
+
+
+.tracking-restaurant h2{
+
+    font-size:22px;
+
+}
+
+
+.tracking-restaurant strong{
+
+    color:var(--primary);
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================
+   TRACKING CARD
+========================================== */
+
+.tracking-card{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+}
+
+
+.tracking-card > h2{
+
+    text-align:left;
+
+    font-size:24px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* ==========================================
+   TIMELINE
+========================================== */
+
+.tracking-timeline{
+
+    position:relative;
+
+    max-width:750px;
+
+}
+
+
+.tracking-step{
+
+    position:relative;
+
+    display:flex;
+
+    gap:25px;
+
+    min-height:110px;
+
+    opacity:.45;
+
+}
+
+
+.tracking-step::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:19px;
+
+    top:40px;
+
+    width:3px;
+
+    height:70px;
+
+    background:#ddd;
+
+}
+
+
+.tracking-step:last-child::before{
+
+    display:none;
+
+}
+
+
+/* ==========================================
+   ICON
+========================================== */
+
+.tracking-icon{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:#eee;
+
+    color:#999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    font-size:18px;
+
+    position:relative;
+
+    z-index:2;
+
+    flex-shrink:0;
+
+}
+
+
+.tracking-step.completed{
+
+    opacity:1;
+
+}
+
+
+.tracking-step.completed .tracking-icon{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+
+.tracking-step.completed::before{
+
+    background:var(--primary);
+
+}
+
+
+.tracking-step.active .tracking-icon{
+
+    box-shadow:
+    0 0 0 6px rgba(255,87,34,.15);
+
+}
+
+
+/* ==========================================
+   TRACKING CONTENT
+========================================== */
+
+.tracking-content{
+
+    padding-top:5px;
+
+}
+
+
+.tracking-content h3{
+
+    font-size:18px;
+
+    margin-bottom:7px;
+
+}
+
+
+.tracking-content p{
+
+    color:#777;
+
+    line-height:1.5;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   CANCELLED ORDER
+========================================== */
+
+.cancelled-order{
+
+    background:#ffebee;
+
+    border:1px solid #ffcdd2;
+
+    color:#c62828;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+
+.cancelled-icon{
+
+    width:50px;
+
+    height:50px;
+
+    background:#c62828;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    flex-shrink:0;
+
+}
+
+
+.cancelled-order h2{
+
+    margin-bottom:6px;
+
+}
+
+
+.cancelled-order p{
+
+    color:#b71c1c;
+
+}
+
+
+/* ==========================================
+   TRACKING SUMMARY
+========================================== */
+
+.tracking-summary{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+.tracking-summary div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+
+.tracking-summary span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.tracking-summary strong{
+
+    line-height:1.5;
+
+}
+
+
+/* ==========================================
+   TRACK ORDER BUTTON
+========================================== */
+
+.track-order-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:12px 22px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+
+.track-order-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE TRACKING
+========================================== */
+
+@media(max-width:700px){
+
+    .tracking-page{
+
+        padding:50px 0;
+
+    }
+
+
+    .tracking-header h1{
+
+        font-size:32px;
+
+    }
+
+
+    .tracking-restaurant{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+
+    .tracking-card{
+
+        padding:25px;
+
+    }
+
+
+    .tracking-summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ==========================================
+   PROFILE PAGE
+========================================== */
+
+.profile-page{
+
+    padding:70px 0;
+
+    min-height:70vh;
+
+}
+
+
+/* ==========================================
+   PROFILE HEADER
+========================================== */
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+
+.profile-avatar{
+
+    width:85px;
+
+    height:85px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:35px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 8px 20px rgba(255,87,34,.25);
+
+}
+
+
+.profile-header h1{
+
+    font-size:38px;
+
+    margin-bottom:7px;
+
+}
+
+
+.profile-header p{
+
+    color:#777;
+
+    font-size:16px;
+
+}
+
+
+/* ==========================================
+   PROFILE GRID
+========================================== */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ==========================================
+   PROFILE CARD
+========================================== */
+
+.profile-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+}
+
+
+.profile-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #eee;
+
+    margin-bottom:20px;
+
+}
+
+
+.profile-card-header h2{
+
+    text-align:left;
+
+    font-size:22px;
+
+    margin:0;
+
+}
+
+
+.profile-icon{
+
+    font-size:25px;
+
+}
+
+
+/* ==========================================
+   PROFILE INFORMATION
+========================================== */
+
+.profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.profile-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #f0f0f0;
+
+}
+
+
+.profile-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.profile-info-row span{
+
+    color:#777;
+
+}
+
+
+.profile-info-row strong{
+
+    text-align:right;
+
+    max-width:60%;
+
+    word-break:break-word;
+
+}
+
+
+/* ==========================================
+   PROFILE ACTIONS
+========================================== */
+
+.profile-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.profile-action{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:17px 0;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.profile-action:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.profile-action > span{
+
+    width:45px;
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff3ee;
+
+    border-radius:12px;
+
+    font-size:21px;
+
+}
+
+
+.profile-action div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+
+.profile-action strong{
+
+    font-size:16px;
+
+}
+
+
+.profile-action small{
+
+    color:#777;
+
+}
+
+
+.profile-action:hover strong{
+
+    color:var(--primary);
+
+}
+
+
+.logout-action:hover strong{
+
+    color:#c62828;
+
+}
+
+
+/* ==========================================
+   PROFILE STATISTICS
+========================================== */
+
+.profile-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+    margin-bottom:50px;
+
+}
+
+
+.profile-stat-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:15px;
+
+    background:#fff3ee;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+}
+
+
+.profile-stat-card div:last-child{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.profile-stat-card span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.profile-stat-card strong{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   RECENT ORDERS
+========================================== */
+
+.recent-orders-section{
+
+    margin-top:20px;
+
+}
+
+
+.section-title-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:25px;
+
+}
+
+
+.section-title-row h2{
+
+    text-align:left;
+
+    font-size:30px;
+
+    margin-bottom:5px;
+
+}
+
+
+.section-title-row p{
+
+    color:#777;
+
+}
+
+
+.see-all-btn{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+.see-all-btn:hover{
+
+    text-decoration:underline;
+
+}
+
+
+.recent-orders{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.recent-order-card{
+
+    background:white;
+
+    padding:22px 25px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.06);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.recent-order-card h3{
+
+    font-size:17px;
+
+    margin-bottom:5px;
+
+}
+
+
+.recent-order-card p{
+
+    color:var(--primary);
+
+    margin-bottom:5px;
+
+}
+
+
+.recent-order-card small{
+
+    color:#999;
+
+}
+
+
+.recent-order-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.recent-status{
+
+    display:inline-block;
+
+    padding:7px 13px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+
+.recent-order-right > strong{
+
+    color:var(--primary);
+
+    white-space:nowrap;
+
+}
+
+
+.recent-order-right > a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+.recent-order-right > a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================================
+   EMPTY PROFILE
+========================================== */
+
+.profile-empty{
+
+    background:white;
+
+    padding:60px 30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+.profile-empty > div{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+
+.profile-empty h3{
+
+    font-size:25px;
+
+    margin-bottom:8px;
+
+}
+
+
+.profile-empty p{
+
+    color:#777;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   PROFILE RESPONSIVE
+========================================== */
+
+@media(max-width:850px){
+
+    .profile-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .profile-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .profile-page{
+
+        padding:50px 0;
+
+    }
+
+
+    .profile-header{
+
+        align-items:flex-start;
+
+    }
+
+
+    .profile-avatar{
+
+        width:65px;
+
+        height:65px;
+
+        font-size:27px;
+
+    }
+
+
+    .profile-header h1{
+
+        font-size:28px;
+
+    }
+
+
+    .profile-card{
+
+        padding:22px;
+
+    }
+
+
+    .profile-info-row{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+
+    .profile-info-row strong{
+
+        text-align:left;
+
+        max-width:100%;
+
+    }
+
+
+    .section-title-row{
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+
+    .recent-order-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+
+    .recent-order-right{
+
+        width:100%;
+
+        align-items:flex-start;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+/* ==========================================
+   EDIT PROFILE
+========================================== */
+
+.edit-profile-page{
+
+    padding:80px 0;
+
+    min-height:70vh;
+
+}
+
+
+.edit-profile-card{
+
+    max-width:650px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+}
+
+
+.edit-profile-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+.edit-profile-icon{
+
+    width:70px;
+
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#fff3ee;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+}
+
+
+.edit-profile-header h1{
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+
+.edit-profile-header p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   PROFILE FORM
+========================================== */
+
+.profile-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+
+.form-group label{
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+
+.form-group input{
+
+    width:100%;
+
+    padding:15px 17px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+.form-group input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 3px rgba(255,87,34,.10);
+
+}
+
+
+/* ==========================================
+   FORM ERRORS
+========================================== */
+
+.form-error{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    padding:13px 16px;
+
+    border-radius:10px;
+
+    border:1px solid #ffcdd2;
+
+}
+
+
+.field-error{
+
+    color:#c62828;
+
+    font-size:13px;
+
+}
+
+
+/* ==========================================
+   FORM BUTTONS
+========================================== */
+
+.profile-form-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:10px;
+
+}
+
+
+.cancel-profile-btn{
+
+    padding:13px 24px;
+
+    border:1px solid #ddd;
+
+    color:#555;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+
+.cancel-profile-btn:hover{
+
+    background:#f5f5f5;
+
+}
+
+
+.save-profile-btn{
+
+    padding:13px 25px;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.save-profile-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   EDIT PROFILE BUTTON
+========================================== */
+
+.edit-profile-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:9px 16px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.edit-profile-btn:hover{
+
+    background:#e64a19;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:600px){
+
+    .edit-profile-page{
+
+        padding:50px 0;
+
+    }
+
+
+    .edit-profile-card{
+
+        padding:30px 22px;
+
+    }
+
+
+    .edit-profile-header h1{
+
+        font-size:27px;
+
+    }
+
+
+    .profile-form-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .cancel-profile-btn,
+    .save-profile-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}
+
+/* ==========================================
+   RESTAURANT DASHBOARD
+========================================== */
+
+.restaurant-dashboard{
+
+    padding:60px 0 100px;
+
+    min-height:80vh;
+
+}
+
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.dashboard-label{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+.dashboard-header h1{
+
+    font-size:36px;
+
+    margin-bottom:8px;
+
+}
+
+
+.dashboard-header p{
+
+    color:#777;
+
+}
+
+
+.restaurant-status{
+
+    font-weight:600;
+
+}
+
+
+.status-open{
+
+    color:#2e7d32;
+
+    background:#e8f5e9;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+}
+
+
+.status-closed{
+
+    color:#c62828;
+
+    background:#ffebee;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+}
+
+
+/* ==========================================
+   DASHBOARD STATISTICS
+========================================== */
+
+.dashboard-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:50px;
+
+}
+
+
+.dashboard-stat-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.07);
+
+}
+
+
+.stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:15px;
+
+    background:#fff3ee;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+}
+
+
+.dashboard-stat-card h3{
+
+    font-size:28px;
+
+    margin-bottom:4px;
+
+}
+
+
+.dashboard-stat-card p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   DASHBOARD SECTIONS
+========================================== */
+
+.dashboard-section{
+
+    margin-bottom:50px;
+
+}
+
+
+.dashboard-section > h2{
+
+    text-align:left;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+}
+
+
+.section-heading-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.section-heading-row h2{
+
+    font-size:28px;
+
+}
+
+
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.dashboard-actions{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+.dashboard-action-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+.dashboard-action-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 18px 30px rgba(0,0,0,.12);
+
+}
+
+
+.dashboard-action-card span{
+
+    font-size:40px;
+
+}
+
+
+.dashboard-action-card h3{
+
+    margin:15px 0 8px;
+
+    font-size:20px;
+
+}
+
+
+.dashboard-action-card p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   RECENT ORDERS
+========================================== */
+
+.dashboard-orders{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.dashboard-order-card{
+
+    background:white;
+
+    padding:22px 25px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.06);
+
+}
+
+
+.dashboard-order-card h3{
+
+    margin-bottom:6px;
+
+}
+
+
+.dashboard-order-card p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.order-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.order-status{
+
+    background:#fff3e0;
+
+    color:#ef6c00;
+
+    padding:7px 13px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+.order-info strong{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-dashboard{
+
+    background:white;
+
+    padding:50px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+.empty-dashboard div{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+
+.empty-dashboard h3{
+
+    margin-bottom:8px;
+
+}
+
+
+.empty-dashboard p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1000px){
+
+    .dashboard-stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+
+    .dashboard-actions{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .restaurant-dashboard{
+
+        padding:35px 0 60px;
+
+    }
+
+
+    .dashboard-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:25px;
+
+        padding:25px;
+
+    }
+
+
+    .dashboard-header h1{
+
+        font-size:28px;
+
+    }
+
+
+    .dashboard-stats{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+
+    .dashboard-order-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+
+    .order-info{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+}
+
+/* ==========================================
+   RESTAURANT MENU MANAGEMENT
+========================================== */
+
+.restaurant-menu-page{
+
+    padding:60px 0 100px;
+
+    min-height:80vh;
+
+}
+
+
+.menu-page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.menu-page-header h1{
+
+    font-size:36px;
+
+    margin-bottom:8px;
+
+}
+
+
+.menu-page-header p{
+
+    color:#777;
+
+}
+
+
+.add-food-btn{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:13px 22px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.add-food-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   RESTAURANT SELECTOR
+========================================== */
+
+.menu-selector{
+
+    margin-bottom:30px;
+
+}
+
+
+.restaurant-selector{
+
+    background:white;
+
+    padding:20px 25px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.05);
+
+}
+
+
+.restaurant-selector form{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.restaurant-selector label{
+
+    font-weight:600;
+
+}
+
+
+.restaurant-selector select{
+
+    padding:10px 15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+    min-width:220px;
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================
+   FOOD GRID
+========================================== */
+
+.menu-items-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+
+.dashboard-food-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+.dashboard-food-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,.11);
+
+}
+
+
+/* ==========================================
+   FOOD IMAGE
+========================================== */
+
+.dashboard-food-image{
+
+    width:100%;
+
+    height:210px;
+
+    overflow:hidden;
+
+    background:#fff3ee;
+
+}
+
+
+.dashboard-food-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.food-placeholder{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:70px;
+
+}
+
+
+/* ==========================================
+   FOOD INFORMATION
+========================================== */
+
+.dashboard-food-info{
+
+    padding:22px;
+
+}
+
+
+.food-title-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+
+.food-title-row h3{
+
+    font-size:21px;
+
+}
+
+
+.dashboard-food-info > p{
+
+    color:#777;
+
+    margin:10px 0 20px;
+
+    line-height:1.5;
+
+}
+
+
+.food-available{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+    padding:5px 9px;
+
+    border-radius:15px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+.food-unavailable{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    padding:5px 9px;
+
+    border-radius:15px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================
+   FOOD BOTTOM ROW
+========================================== */
+
+.food-bottom-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.food-price{
+
+    color:var(--primary);
+
+    font-size:19px;
+
+}
+
+
+.food-actions{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+.food-edit-btn,
+.food-delete-btn{
+
+    padding:8px 13px;
+
+    border-radius:7px;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+
+.food-edit-btn{
+
+    background:#fff3e0;
+
+    color:#ef6c00;
+
+}
+
+
+.food-delete-btn{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+}
+
+
+.food-edit-btn:hover{
+
+    background:#ffe0b2;
+
+}
+
+
+.food-delete-btn:hover{
+
+    background:#ffcdd2;
+
+}
+
+
+/* ==========================================
+   EMPTY MENU
+========================================== */
+
+.menu-empty-state{
+
+    background:white;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+.empty-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+
+.menu-empty-state h2{
+
+    margin-bottom:10px;
+
+    font-size:28px;
+
+}
+
+
+.menu-empty-state p{
+
+    color:#777;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:700px){
+
+    .menu-page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:25px;
+
+        padding:25px;
+
+    }
+
+
+    .menu-page-header h1{
+
+        font-size:28px;
+
+    }
+
+
+    .restaurant-selector form{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .restaurant-selector select{
+
+        width:100%;
+
+    }
+
+
+    .menu-items-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .food-bottom-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .food-actions{
+
+        width:100%;
+
+    }
+
+
+    .food-edit-btn,
+    .food-delete-btn{
+
+        flex:1;
+
+        text-align:center;
+
+    }
+
+}
+
+/* ==========================================
+   ADD FOOD PAGE
+========================================== */
+
+.add-food-page{
+
+    padding:60px 0 100px;
+
+    min-height:80vh;
+
+}
+
+
+.add-food-header{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.add-food-header h1{
+
+    font-size:36px;
+
+    margin-bottom:8px;
+
+}
+
+
+.add-food-header p{
+
+    color:#777;
+
+}
+
+
+.add-food-selector{
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   FORM CARD
+========================================== */
+
+.food-form-card{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+
+.form-group{
+
+    margin-bottom:22px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+.form-control{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #ddd;
+
+    border-radius:9px;
+
+    outline:none;
+
+    font-size:15px;
+
+    background:white;
+
+    transition:.2s;
+
+}
+
+
+.form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 3px rgba(255,87,34,.1);
+
+}
+
+
+textarea.form-control{
+
+    resize:vertical;
+
+}
+
+
+/* ==========================================
+   TWO COLUMN FORM
+========================================== */
+
+.form-two-columns{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+
+/* ==========================================
+   HELP TEXT
+========================================== */
+
+.form-group small{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#888;
+
+    font-size:12px;
+
+}
+
+
+/* ==========================================
+   OPTIONS
+========================================== */
+
+.food-options{
+
+    background:#fafafa;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-top:10px;
+
+    margin-bottom:30px;
+
+}
+
+
+.food-options h3{
+
+    margin-bottom:20px;
+
+    font-size:20px;
+
+}
+
+
+.checkbox-option{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+    cursor:pointer;
+
+}
+
+
+.checkbox-option:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+.checkbox-option input{
+
+    width:18px;
+
+    height:18px;
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================
+   ERRORS
+========================================== */
+
+.form-error{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+.field-error{
+
+    color:#c62828;
+
+    font-size:13px;
+
+    margin-top:6px;
+
+}
+
+
+.field-error ul{
+
+    list-style:none;
+
+}
+
+
+/* ==========================================
+   FORM BUTTONS
+========================================== */
+
+.form-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    padding-top:10px;
+
+}
+
+
+.cancel-form-btn{
+
+    padding:13px 25px;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    color:#555;
+
+    background:#eee;
+
+    font-weight:600;
+
+}
+
+
+.cancel-form-btn:hover{
+
+    background:#ddd;
+
+}
+
+
+.save-food-btn{
+
+    border:none;
+
+    padding:13px 28px;
+
+    border-radius:9px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.save-food-btn:hover{
+
+    background:#e64a19;
+
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.form-empty-state{
+
+    background:white;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+.form-empty-state div{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:700px){
+
+    .add-food-header{
+
+        padding:25px;
+
+    }
+
+
+    .add-food-header h1{
+
+        font-size:28px;
+
+    }
+
+
+    .food-form-card{
+
+        padding:25px;
+
+    }
+
+
+    .form-two-columns{
+
+        grid-template-columns:1fr;
+
+        gap:0;
+
+    }
+
+
+    .form-actions{
+
+        flex-direction:column-reverse;
+
+    }
+
+
+    .cancel-form-btn,
+    .save-food-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}
+
+/* ==========================================
+   CURRENT FOOD IMAGE
+========================================== */
+
+.current-food-image{
+
+    background:#fafafa;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+.current-food-image p{
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+}
+
+
+.current-food-image img{
+
+    width:180px;
+
+    height:130px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    display:block;
+
+}
+
+/* ==========================================
+   DELETE FOOD PAGE
+========================================== */
+
+.delete-food-page{
+
+    min-height:80vh;
+
+    padding:80px 0;
+
+}
+
+
+.delete-food-card{
+
+    max-width:650px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+}
+
+
+.delete-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+
+.delete-food-card h1{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+}
+
+
+.delete-warning{
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    color:#444;
+
+}
+
+
+.delete-description{
+
+    color:#888;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    margin-top:10px;
+
+}
+
+
+/* ==========================================
+   FOOD PREVIEW
+========================================== */
+
+.delete-food-preview{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    text-align:left;
+
+    background:#fafafa;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    margin:30px 0;
+
+}
+
+
+.delete-food-preview img,
+.delete-food-placeholder{
+
+    width:90px;
+
+    height:75px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+
+.delete-food-placeholder{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eee;
+
+    font-size:35px;
+
+}
+
+
+.delete-food-preview h3{
+
+    margin-bottom:5px;
+
+}
+
+
+.delete-food-preview p{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   DELETE ACTIONS
+========================================== */
+
+.delete-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.cancel-delete-btn{
+
+    display:inline-block;
+
+    padding:13px 25px;
+
+    background:#eee;
+
+    color:#444;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+.cancel-delete-btn:hover{
+
+    background:#ddd;
+
+}
+
+
+.confirm-delete-btn{
+
+    border:none;
+
+    padding:13px 25px;
+
+    background:#d32f2f;
+
+    color:white;
+
+    border-radius:9px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.confirm-delete-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+
+@media(max-width:600px){
+
+    .delete-food-card{
+
+        padding:30px 20px;
+
+    }
+
+
+    .delete-actions{
+
+        flex-direction:column;
+
+    }
+
+
+    .cancel-delete-btn,
+    .confirm-delete-btn{
+
+        width:100%;
+
+    }
+
+}
+
+/* ==========================================
+   MENU MANAGEMENT
+========================================== */
+
+.menu-management{
+
+    min-height:80vh;
+
+    padding:60px 0 100px;
+
+}
+
+
+.menu-page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.dashboard-label{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+
+.menu-page-header h1{
+
+    font-size:36px;
+
+    margin-bottom:8px;
+
+}
+
+
+.menu-page-header p{
+
+    color:#777;
+
+}
+
+
+.add-food-btn{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 24px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    white-space:nowrap;
+
+}
+
+
+.add-food-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   RESTAURANT SELECTOR
+========================================== */
+
+.restaurant-selector{
+
+    background:white;
+
+    padding:20px 25px;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.05);
+
+}
+
+
+.restaurant-selector form{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.restaurant-selector label{
+
+    font-weight:600;
+
+}
+
+
+.restaurant-selector select{
+
+    padding:10px 15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+}
+
+
+/* ==========================================
+   MENU STATISTICS
+========================================== */
+
+.menu-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+}
+
+
+.menu-stat-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.06);
+
+}
+
+
+.menu-stat-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff3ed;
+
+    font-size:25px;
+
+}
+
+
+.menu-stat-card span{
+
+    display:block;
+
+    color:#888;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+
+}
+
+
+.menu-stat-card strong{
+
+    font-size:25px;
+
+}
+
+
+/* ==========================================
+   FOOD GRID
+========================================== */
+
+.dashboard-food-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+.dashboard-food-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+.dashboard-food-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+/* ==========================================
+   FOOD IMAGE
+========================================== */
+
+.dashboard-food-image{
+
+    height:210px;
+
+    position:relative;
+
+    background:#f2f2f2;
+
+}
+
+
+.dashboard-food-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.food-image-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:70px;
+
+}
+
+
+/* ==========================================
+   FOOD STATUS
+========================================== */
+
+.food-status{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+
+.food-status.available{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+}
+
+
+.food-status.unavailable{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+}
+
+
+/* ==========================================
+   FOOD CONTENT
+========================================== */
+
+.dashboard-food-content{
+
+    padding:22px;
+
+}
+
+
+.food-category{
+
+    color:var(--primary);
+
+    font-size:12px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    margin-bottom:7px;
+
+}
+
+
+.dashboard-food-content h3{
+
+    font-size:21px;
+
+    margin-bottom:8px;
+
+}
+
+
+.dashboard-food-description{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    min-height:42px;
+
+}
+
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.dashboard-food-price{
+
+    margin-top:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.dashboard-food-price strong{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+
+.old-price{
+
+    color:#999;
+
+    text-decoration:line-through;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.food-badges{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:15px;
+
+}
+
+
+.food-badges span{
+
+    background:#fff5f0;
+
+    color:var(--primary);
+
+    padding:6px 9px;
+
+    border-radius:6px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.dashboard-food-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+.edit-food-btn,
+.delete-food-btn{
+
+    flex:1;
+
+    text-align:center;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+.edit-food-btn{
+
+    background:#fff3e0;
+
+    color:#ef6c00;
+
+}
+
+
+.edit-food-btn:hover{
+
+    background:#ffe0b2;
+
+}
+
+
+.delete-food-btn{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+}
+
+
+.delete-food-btn:hover{
+
+    background:#ffcdd2;
+
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.menu-empty-state{
+
+    background:white;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+.menu-empty-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+
+.menu-empty-state h2{
+
+    margin-bottom:10px;
+
+}
+
+
+.menu-empty-state p{
+
+    color:#777;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1000px){
+
+    .menu-stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .menu-page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .menu-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .restaurant-selector form{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+/* ==========================================
+   FOOD DETAIL PAGE
+========================================== */
+
+.food-detail-page{
+
+    padding:60px 0 100px;
+
+    min-height:80vh;
+
+}
+
+
+.food-breadcrumb{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:30px;
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.food-breadcrumb a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
+
+
+.food-breadcrumb a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+.food-detail-card{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.food-detail-image{
+
+    min-height:550px;
+
+    position:relative;
+
+    background:#f1f1f1;
+
+}
+
+
+.food-detail-image img{
+
+    width:100%;
+
+    height:100%;
+
+    min-height:550px;
+
+    object-fit:cover;
+
+}
+
+
+.food-detail-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    min-height:550px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:120px;
+
+}
+
+
+.food-detail-badge{
+
+    position:absolute;
+
+    top:25px;
+
+    left:25px;
+
+    background:#fff;
+
+    color:var(--primary);
+
+    padding:10px 16px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.1);
+
+}
+
+
+.food-detail-special{
+
+    position:absolute;
+
+    top:25px;
+
+    right:25px;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   INFORMATION
+========================================== */
+
+.food-detail-info{
+
+    padding:55px;
+
+}
+
+
+.food-detail-category{
+
+    color:var(--primary);
+
+    text-transform:uppercase;
+
+    font-weight:600;
+
+    font-size:13px;
+
+    letter-spacing:1px;
+
+    margin-bottom:10px;
+
+}
+
+
+.food-detail-info h1{
+
+    font-size:42px;
+
+    line-height:1.2;
+
+    margin-bottom:12px;
+
+}
+
+
+.food-detail-restaurant{
+
+    color:#777;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+}
+
+
+.food-detail-restaurant:hover{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================
+   RATING
+========================================== */
+
+.food-detail-rating{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:20px;
+
+    font-size:17px;
+
+}
+
+
+.food-detail-rating strong{
+
+    font-size:20px;
+
+}
+
+
+.food-detail-rating span{
+
+    color:#999;
+
+}
+
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.food-detail-description{
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-top:25px;
+
+    font-size:16px;
+
+}
+
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.food-detail-price{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+.food-detail-price strong{
+
+    font-size:32px;
+
+    color:var(--primary);
+
+}
+
+
+.food-old-price{
+
+    color:#999;
+
+    text-decoration:line-through;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================
+   META INFORMATION
+========================================== */
+
+.food-detail-meta{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+.food-detail-meta > div{
+
+    background:#fafafa;
+
+    padding:18px;
+
+    border-radius:12px;
+
+}
+
+
+.food-detail-meta span{
+
+    font-size:22px;
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+
+.food-detail-meta strong{
+
+    display:block;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+
+}
+
+
+.food-detail-meta p{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+/* ==========================================
+   ADD TO CART
+========================================== */
+
+.food-add-cart-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:17px;
+
+    background:var(--primary);
+
+    color:white;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.food-add-cart-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .food-detail-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .food-detail-image{
+
+        min-height:400px;
+
+    }
+
+
+    .food-detail-image img,
+    .food-detail-placeholder{
+
+        min-height:400px;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .food-detail-info{
+
+        padding:30px 20px;
+
+    }
+
+
+    .food-detail-info h1{
+
+        font-size:32px;
+
+    }
+
+
+    .food-detail-meta{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .food-detail-special{
+
+        top:80px;
+
+        left:25px;
+
+        right:auto;
+
+    }
+
+}
+
+/* ==========================================
+   FOOD CARD LINKS
+========================================== */
+
+.food-card-image-link{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+.food-card-link{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+.food-card-link:hover{
+
+    color:var(--primary);
+
+}
+
+
+.food-card-image-link img{
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================
+   FOOD BADGES
+========================================== */
+
+.food-card-badges{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:15px;
+
+}
+
+
+.food-card-badges span{
+
+    background:#fff5f0;
+
+    color:var(--primary);
+
+    padding:6px 10px;
+
+    border-radius:6px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FOOD DETAIL PAGE
+========================================== */
+
+.food-detail{
+
+    padding:100px 0;
+
+}
+
+
+.food-detail-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+
+.food-detail-image{
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+}
+
+
+.food-detail-image img{
+
+    width:100%;
+
+    height:500px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+.food-detail-placeholder{
+
+    height:500px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:120px;
+
+    background:#fff5f0;
+
+}
+
+
+.food-detail-info{
+
+    padding:20px;
+
+}
+
+
+.food-category{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+.food-detail-info h1{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+
+.food-description{
+
+    color:#666;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+
+.food-rating{
+
+    margin-bottom:20px;
+
+    font-size:18px;
+
+}
+
+
+.food-detail-price{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+
+.food-detail-price strong{
+
+    color:var(--primary);
+
+    font-size:30px;
+
+}
+
+
+.old-price{
+
+    color:#999;
+
+    text-decoration:line-through;
+
+    font-size:18px;
+
+}
+
+
+.food-extra-info{
+
+    display:flex;
+
+    gap:30px;
+
+    margin-bottom:30px;
+
+}
+
+
+.food-extra-info div{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.06);
+
+}
+
+
+.food-extra-info span{
+
+    font-size:24px;
+
+}
+
+
+.food-extra-info strong{
+
+    display:block;
+
+    margin-top:8px;
+
+}
+
+
+.food-extra-info p{
+
+    color:#777;
+
+    margin-top:5px;
+
+}
+
+
+.food-restaurant{
+
+    margin-bottom:30px;
+
+}
+
+
+.food-restaurant span{
+
+    display:block;
+
+    color:#777;
+
+    margin-bottom:5px;
+
+}
+
+
+.food-restaurant a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    font-size:18px;
+
+}
+
+
+.food-add-cart-btn{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:16px 35px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.food-add-cart-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   FOOD DETAIL RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .food-detail-container{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+    }
+
+
+    .food-detail-info h1{
+
+        font-size:38px;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .food-detail{
+
+        padding:60px 0;
+
+    }
+
+
+    .food-detail-image img{
+
+        height:350px;
+
+    }
+
+
+    .food-detail-placeholder{
+
+        height:350px;
+
+    }
+
+
+    .food-detail-info h1{
+
+        font-size:32px;
+
+    }
+
+
+    .food-extra-info{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+}
+
+/* ==========================================
+   CART RESTAURANT WARNING
+========================================== */
+
+.cart-warning{
+
+    background:#fff3e0;
+
+    border:1px solid #ffcc80;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+}
+
+
+.cart-warning h3{
+
+    color:#e65100;
+
+    margin-bottom:10px;
+
+}
+
+
+.cart-warning p{
+
+    color:#666;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+
+}
+
+
+.cart-warning-btn{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+}
+
+
+.cart-warning-btn:hover{
+
+    background:#e64a19;
+
+}
+
+/* ==========================================
+   CART DISCOUNT
+========================================== */
+
+.discount-row{
+
+    color:#2e7d32;
+
+}
+
+
+.discount-row strong{
+
+    color:#2e7d32;
+
+}
+
+/* ==========================================
+   ORDER DETAIL PAGE
+========================================== */
+
+.order-detail-page{
+
+    padding:50px 0;
+
+}
+
+
+.order-detail-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+
+.order-detail-header h1{
+
+    margin-bottom:8px;
+
+}
+
+
+.order-detail-header p{
+
+    color:#777;
+
+}
+
+
+.order-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+
+}
+
+
+.order-card h2{
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+.status.pending{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+}
+
+
+.status.confirmed{
+
+    background:#d1ecf1;
+
+    color:#0c5460;
+
+}
+
+
+.status.preparing{
+
+    background:#e2e3ff;
+
+    color:#383d8f;
+
+}
+
+
+.status.delivery{
+
+    background:#cce5ff;
+
+    color:#004085;
+
+}
+
+
+.status.delivered{
+
+    background:#d4edda;
+
+    color:#155724;
+
+}
+
+
+.status.cancelled{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+}
+
+
+/* ==========================================
+   RESTAURANT
+========================================== */
+
+.restaurant-order-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+.restaurant-order-info h3{
+
+    margin-bottom:8px;
+
+}
+
+
+.restaurant-order-info p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   ORDER ITEMS
+========================================== */
+
+.order-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.order-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.order-item-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.order-item-info h3{
+
+    margin-bottom:5px;
+
+}
+
+
+.order-item-info p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.order-item-image{
+
+    width:70px;
+
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+}
+
+
+/* ==========================================
+   DELIVERY INFORMATION
+========================================== */
+
+.delivery-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+.delivery-info div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.delivery-info span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   PAYMENT
+========================================== */
+
+.payment-status{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.payment-paid{
+
+    color:#2e7d32;
+
+}
+
+
+.payment-pending{
+
+    color:#ef6c00;
+
+}
+
+
+.payment-failed{
+
+    color:#c62828;
+
+}
+
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+.order-summary-card{
+
+    max-width:600px;
+
+    margin-left:auto;
+
+}
+
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+}
+
+
+.summary-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+
+.discount-row{
+
+    color:#2e7d32;
+
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.order-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+
+.primary-btn,
+.secondary-btn{
+
+    display:inline-block;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+.primary-btn{
+
+    background:#ff5722;
+
+    color:#fff;
+
+}
+
+
+.secondary-btn{
+
+    background:#f5f5f5;
+
+    color:#333;
+
+}
+
+/* ==========================================
+   MY ORDERS PAGE
+========================================== */
+
+.orders-page{
+
+    padding:50px 0;
+
+}
+
+
+.orders-header{
+
+    margin-bottom:30px;
+
+}
+
+
+.orders-header h1{
+
+    margin-bottom:8px;
+
+}
+
+
+.orders-header p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   ORDER HISTORY CARD
+========================================== */
+
+.orders-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+.order-history-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+
+}
+
+
+.order-history-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.order-history-header h2{
+
+    margin-bottom:6px;
+
+}
+
+
+.order-history-header p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   RESTAURANT
+========================================== */
+
+.order-history-restaurant{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:18px 0;
+
+}
+
+
+.order-history-restaurant strong{
+
+    font-size:17px;
+
+}
+
+
+.order-history-restaurant span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+.order-history-summary{
+
+    display:flex;
+
+    gap:50px;
+
+    padding:18px 0;
+
+    border-top:1px solid #eee;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.order-history-summary div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.order-history-summary span{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.order-history-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:20px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* ==========================================
+   EMPTY ORDERS
+========================================== */
+
+.empty-orders{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+
+}
+
+
+.empty-orders-icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+
+.empty-orders h2{
+
+    margin-bottom:10px;
+
+}
+
+
+.empty-orders p{
+
+    color:#777;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .order-history-header{
+
+        flex-direction:column;
+
+    }
+
+
+    .order-history-restaurant{
+
+        flex-direction:column;
+
+        gap:6px;
+
+    }
+
+
+    .order-history-summary{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+    .order-history-actions{
+
+        justify-content:flex-start;
+
+    }
+
+}
+
+/* ==========================================
+   ORDER TRACKING PAGE
+========================================== */
+
+.track-order-page{
+
+    padding:50px 0;
+
+}
+
+
+.track-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.track-header h1{
+
+    margin-bottom:8px;
+
+}
+
+
+.track-header p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   TRACKING CARD
+========================================== */
+
+.tracking-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+
+}
+
+
+.tracking-card h2{
+
+    margin-bottom:8px;
+
+}
+
+
+.tracking-card > p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   TIMELINE
+========================================== */
+
+.tracking-timeline{
+
+    position:relative;
+
+    margin-top:30px;
+
+}
+
+
+.tracking-step{
+
+    display:flex;
+
+    gap:20px;
+
+    position:relative;
+
+    padding-bottom:35px;
+
+    opacity:0.45;
+
+}
+
+
+.tracking-step:last-child{
+
+    padding-bottom:0;
+
+}
+
+
+.tracking-step.completed{
+
+    opacity:1;
+
+}
+
+
+.tracking-icon{
+
+    width:45px;
+
+    height:45px;
+
+    min-width:45px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eee;
+
+    font-size:18px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.tracking-step.completed .tracking-icon{
+
+    background:#ff5722;
+
+    color:#fff;
+
+}
+
+
+.tracking-step:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:22px;
+
+    top:45px;
+
+    width:2px;
+
+    height:35px;
+
+    background:#ddd;
+
+}
+
+
+.tracking-step.completed:not(:last-child)::after{
+
+    background:#ff5722;
+
+}
+
+
+.tracking-content h3{
+
+    margin-bottom:5px;
+
+}
+
+
+.tracking-content p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   CURRENT STATUS
+========================================== */
+
+.current-status-card{
+
+    text-align:center;
+
+    padding:35px;
+
+}
+
+
+.current-status-card > span{
+
+    display:block;
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+
+.current-status-card h2{
+
+    margin-bottom:8px;
+
+}
+
+
+.current-status-card p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================
+   TOTAL
+========================================== */
+
+.tracking-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+}
+
+
+.tracking-total div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+
+.tracking-total span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.tracking-total strong{
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.tracking-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .tracking-total{
+
+        flex-direction:column;
+
+    }
+
+
+    .tracking-step{
+
+        gap:12px;
+
+    }
+
+
+    .tracking-actions{
+
+        justify-content:flex-start;
+
+    }
+
+}
+
+/* =========================================
+   RESTAURANT ORDER MANAGEMENT
+========================================= */
+
+.restaurant-orders-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.orders-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.orders-header p {
+    color: #777;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.restaurant-order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-card-header h2 {
+    margin: 0 0 5px;
+}
+
+.order-date {
+    color: #888;
+    font-size: 14px;
+}
+
+.order-status {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-preparing {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-out_for_delivery {
+    background: #e2d9f3;
+    color: #4a2875;
+}
+
+.status-delivered {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.order-restaurant {
+    padding: 18px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.customer-section,
+.delivery-section,
+.order-items-section {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.customer-section h3,
+.delivery-section h3,
+.order-items-section h3,
+.status-update-section h3 {
+    margin-bottom: 12px;
+}
+
+.customer-section p,
+.delivery-section p {
+    margin: 7px 0;
+    color: #555;
+}
+
+.restaurant-order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.restaurant-order-item:last-child {
+    border-bottom: none;
+}
+
+.restaurant-order-item span {
+    color: #777;
+    margin-left: 10px;
+}
+
+.order-payment {
+    padding: 20px 0;
+}
+
+.order-payment > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-total {
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.status-update-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.status-update-section form {
+    display: flex;
+    gap: 12px;
+}
+
+.status-update-section select {
+    flex: 1;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+}
+
+.status-update-section button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #ff5722;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.status-update-section button:hover {
+    opacity: 0.9;
+}
+
+.order-completed-message {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.empty-orders {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.messages-container {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .status-update-section form {
+        flex-direction: column;
+    }
+
+    .restaurant-order-card {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================
+   DASHBOARD QUICK ACTION CARDS
+========================================= */
+
+.dashboard-card {
+    display: block;
+    background: white;
+    padding: 40px;
+    border-radius: 28px;
+    text-decoration: none;
+    color: #222;
+    min-height: 260px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.10);
+}
+
+.dashboard-icon {
+    font-size: 52px;
+    margin-bottom: 25px;
+}
+
+.dashboard-card h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.dashboard-card p {
+    font-size: 18px;
+    color: #777;
+    margin: 0;
+}
+
+/* =========================================
+   RESTAURANT DASHBOARD ANALYTICS
+========================================= */
+
+.dashboard-analytics {
+    margin-top: 50px;
+}
+
+.analytics-header {
+    margin-bottom: 25px;
+}
+
+.analytics-header h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.analytics-header p {
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* ANALYTICS GRID */
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/* ANALYTICS CARD */
+
+.analytics-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.analytics-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+.analytics-icon {
+    font-size: 38px;
+}
+
+.analytics-card h3 {
+    font-size: 27px;
+    margin: 0 0 5px;
+    color: #222;
+}
+
+.analytics-card p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* REVENUE */
+
+.revenue-card {
+    grid-column: span 2;
+}
+
+.revenue-card h3 {
+    font-size: 26px;
+}
+
+
+/* =========================================
+   RECENT ORDERS
+========================================= */
+
+.recent-orders-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #777;
+    margin: 0;
+}
+
+.section-header a {
+    color: #ff5722;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.section-header a:hover {
+    text-decoration: underline;
+}
+
+
+/* TABLE */
+
+.recent-orders-table {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns:
+        0.7fr
+        1.5fr
+        1.2fr
+        1fr
+        1.2fr;
+
+    align-items: center;
+    gap: 15px;
+    padding: 18px 22px;
+}
+
+.table-header {
+    background: #f8f9fa;
+    font-weight: 700;
+    color: #444;
+}
+
+.table-row {
+    border-top: 1px solid #eee;
+    color: #555;
+}
+
+.table-row:hover {
+    background: #fafafa;
+}
+
+
+/* STATUS */
+
+.dashboard-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-preparing {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-out_for_delivery {
+    background: #e2d9f3;
+    color: #4a2875;
+}
+
+.status-delivered {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+/* EMPTY */
+
+.no-recent-orders {
+    background: white;
+    padding: 50px;
+    text-align: center;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    color: #777;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .revenue-card {
+        grid-column: span 2;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .revenue-card {
+        grid-column: span 1;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .recent-orders-table {
+        overflow-x: auto;
+    }
+
+    .table-header,
+    .table-row {
+        min-width: 700px;
+    }
+
+}
+
+/* =========================================
+   RESTAURANT MENU MANAGEMENT
+========================================= */
+
+.restaurant-menu-management {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.menu-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.menu-management-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.menu-management-header p {
+    color: #777;
+    margin: 0;
+}
+
+.add-food-dashboard-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #ff5722;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+}
+
+.add-food-dashboard-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* FOOD GRID */
+
+.dashboard-food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.dashboard-food-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-food-image,
+.dashboard-food-placeholder {
+    width: 100%;
+    height: 210px;
+}
+
+.dashboard-food-image {
+    object-fit: cover;
+}
+
+.dashboard-food-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    background: #f8f9fa;
+}
+
+.dashboard-food-content {
+    padding: 20px;
+}
+
+.dashboard-food-restaurant {
+    font-size: 13px;
+    color: #ff5722;
+    font-weight: 600;
+}
+
+.dashboard-food-content h3 {
+    font-size: 23px;
+    margin: 8px 0;
+}
+
+.dashboard-food-category {
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.dashboard-food-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.dashboard-food-price {
+    margin: 15px 0;
+}
+
+.dashboard-food-price strong {
+    font-size: 20px;
+}
+
+.dashboard-old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+
+/* BADGES */
+
+.food-availability {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.available-badge,
+.unavailable-badge,
+.featured-badge,
+.special-badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.available-badge {
+    background: #d4edda;
+    color: #155724;
+}
+
+.unavailable-badge {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.featured-badge {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.special-badge {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+
+/* ACTIONS */
+
+.dashboard-food-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-food-btn,
+.delete-food-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-food-btn {
+    background: #222;
+    color: white;
+    text-decoration: none;
+}
+
+.delete-food-btn {
+    background: #f8d7da;
+    color: #721c24;
+    border: none;
+}
+
+
+/* EMPTY */
+
+.empty-menu-management {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+.empty-menu-icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.empty-menu-management h2 {
+    margin-bottom: 10px;
+}
+
+.empty-menu-management p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   FOOD FORM
+========================================= */
+
+.food-form-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.food-form-header {
+    margin-bottom: 30px;
+}
+
+.food-form-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.food-form-header p {
+    color: #777;
+}
+
+.food-form {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.form-section {
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section:first-child {
+    padding-top: 0;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 15px;
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #ff5722;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+}
+
+.food-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.cancel-food-btn,
+.save-food-btn {
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-food-btn {
+    background: #eee;
+    color: #333;
+}
+
+.save-food-btn {
+    background: #ff5722;
+    color: white;
+    border: none;
+}
+
+.form-errors,
+.errorlist {
+    color: #c62828;
+}
+
+.errorlist {
+    margin: 6px 0;
+    padding-left: 18px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .menu-management-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .dashboard-food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .food-form {
+        padding: 20px;
+    }
+
+}
+
+/* =========================================
+   CATEGORY MANAGEMENT
+========================================= */
+
+.category-management {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.category-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.category-header p {
+    color: #777;
+}
+
+.add-category-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #ff5722;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.category-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.category-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff3e0;
+    border-radius: 12px;
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.category-content h2 {
+    margin: 5px 0;
+    font-size: 21px;
+}
+
+.category-restaurant {
+    color: #ff5722;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.category-content p {
+    color: #777;
+    font-size: 14px;
+    margin: 7px 0;
+}
+
+.category-food-count {
+    color: #555;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CATEGORY FORM
+========================================= */
+
+.category-form-page {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.category-form-header {
+    margin-bottom: 30px;
+}
+
+.category-form-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.category-form-header p {
+    color: #777;
+}
+
+.category-form {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.category-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.cancel-category-btn,
+.save-category-btn {
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-category-btn {
+    background: #eee;
+    color: #333;
+}
+
+.save-category-btn {
+    background: #ff5722;
+    color: white;
+    border: none;
+}
+
+
+/* =========================================
+   EMPTY CATEGORY
+========================================= */
+
+.empty-category {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+.empty-category-icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.empty-category h2 {
+    margin-bottom: 10px;
+}
+
+.empty-category p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   RESTAURANT CATEGORY MENU
+========================================= */
+
+.menu-section-header {
+    margin-bottom: 35px;
+}
+
+.menu-section-header h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.menu-section-header p {
+    color: #777;
+}
+
+
+/* CATEGORY */
+
+.restaurant-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.menu-category {
+    width: 100%;
+}
+
+.category-title {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 12px;
+}
+
+.category-title h3 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.category-title p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* FOOD GRID */
+
+.menu-category .food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* FOOD CARD */
+
+.menu-category .food-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.menu-category .food-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.menu-category .food-card img,
+.menu-category .food-placeholder {
+    width: 100%;
+    height: 210px;
+}
+
+.menu-category .food-card img {
+    object-fit: cover;
+}
+
+.menu-category .food-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    font-size: 55px;
+}
+
+
+/* FOOD INFO */
+
+.menu-category .food-info {
+    padding: 18px;
+}
+
+.menu-category .food-info h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.food-name-link {
+    color: #222;
+    text-decoration: none;
+}
+
+.food-name-link:hover {
+    color: #ff5722;
+}
+
+.menu-category .food-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+
+/* IMAGE LINK */
+
+.food-card-image-link {
+    display: block;
+    text-decoration: none;
+}
+
+
+/* PRICE */
+
+.menu-category .food-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-category .food-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-category .food-price strong {
+    color: #ff5722;
+    font-size: 19px;
+}
+
+.menu-category .old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 13px;
+}
+
+
+/* ADD BUTTON */
+
+.menu-category .add-food-btn {
+    background: #ff5722;
+    color: white;
+    text-decoration: none;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu-category .add-food-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* EMPTY CATEGORY */
+
+.menu-category .no-food {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    color: #777;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .menu-category .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .menu-category .food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-section-header h2 {
+        font-size: 27px;
+    }
+
+    .category-title h3 {
+        font-size: 22px;
+    }
+
+}
+
+/* =========================================
+   RESTAURANT SETTINGS
+========================================= */
+
+.restaurant-settings-page {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.settings-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.settings-header p {
+    color: #777;
+}
+
+.back-dashboard-btn {
+    text-decoration: none;
+    padding: 11px 18px;
+    background: #f1f1f1;
+    color: #333;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+
+/* MESSAGE */
+
+.settings-message {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+
+/* FORM */
+
+.restaurant-settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+/* SECTION */
+
+.settings-section {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
+}
+
+.settings-section h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* GRID */
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* INPUTS */
+
+.form-group label,
+.image-upload-box label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.image-upload-box input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff5722;
+}
+
+
+/* IMAGES */
+
+.settings-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.image-upload-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.settings-cover-preview {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* CHECKBOX */
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.checkbox-label input {
+    width: auto;
+}
+
+
+/* ACTIONS */
+
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-bottom: 30px;
+}
+
+.cancel-settings-btn,
+.save-settings-btn {
+    padding: 13px 23px;
+    border-radius: 7px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-settings-btn {
+    background: #eee;
+    color: #333;
+}
+
+.save-settings-btn {
+    background: #ff5722;
+    color: white;
+    border: none;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .settings-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+}
+
+/* =========================================
+   RESTAURANT DASHBOARD - QUICK ACTIONS
+========================================= */
+
+.dashboard-section {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.dashboard-section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+
+/* QUICK ACTION GRID */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* ACTION CARD */
+
+.quick-action-card {
+    display: block;
+    background: #ffffff;
+    padding: 35px;
+    min-height: 230px;
+
+    border-radius: 22px;
+
+    text-decoration: none;
+    color: #222;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* HOVER */
+
+.quick-action-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.10);
+
+    text-decoration: none;
+}
+
+
+/* ICON */
+
+.quick-action-icon {
+    font-size: 48px;
+    margin-bottom: 25px;
+}
+
+
+/* TITLE */
+
+.quick-action-card h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+
+/* DESCRIPTION */
+
+.quick-action-card p {
+    font-size: 17px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-section h2 {
+        font-size: 27px;
+    }
+
+    .quick-action-card {
+        min-height: auto;
+    }
+
+}
+
+/* =========================================
+   RESTAURANT ORDERS - STATISTICS
+========================================= */
+
+.order-statistics {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.order-stat-card {
+
+    background: #ffffff;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.stat-icon {
+
+    font-size: 35px;
+}
+
+
+.stat-label {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+
+.order-stat-card strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    color: #222;
+}
+
+
+/* =========================================
+   ORDER FILTERS
+========================================= */
+
+.order-filters {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+
+.order-filters a {
+
+    padding: 10px 18px;
+
+    border-radius: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    color: #555;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+
+.order-filters a:hover {
+
+    background: #f5f5f5;
+
+    transform: translateY(-1px);
+}
+
+
+.order-filters a.active {
+
+    background: #ff5722;
+
+    color: #ffffff;
+
+    border-color: #ff5722;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .order-statistics {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .order-statistics {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .order-statistics {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .order-filters {
+
+        flex-direction: column;
+
+    }
+
+    .order-filters a {
+
+        text-align: center;
+
+    }
+
+}
+
+/* =========================================
+   RESTAURANT ORDER DETAIL
+========================================= */
+
+.restaurant-order-detail-page {
+    padding: 40px 0;
+}
+
+
+.order-detail-card {
+    background: #ffffff;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+.detail-card-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 15px;
+}
+
+
+.detail-card-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+
+.order-detail-card p {
+    margin: 10px 0;
+    color: #555;
+}
+
+
+.detail-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.detail-order-item:last-child {
+    border-bottom: none;
+}
+
+
+.detail-order-item span {
+    margin-left: 10px;
+    color: #777;
+}
+
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    color: #555;
+}
+
+
+.order-detail-total {
+    border-top: 2px solid #eeeeee;
+    margin-top: 10px;
+    padding-top: 20px;
+    font-size: 20px;
+    color: #222;
+}
+
+
+.payment-status {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+
+.view-order-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #ff5722;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+
+.view-order-btn:hover {
+    background: #e64a19;
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   RESTAURANT ORDER SEARCH
+========================================= */
+
+.order-search-section {
+
+    background: #ffffff;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+
+    margin-bottom: 20px;
+}
+
+
+.order-search-form {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.search-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 200px;
+}
+
+
+.search-field label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #555;
+}
+
+
+.search-field input,
+.search-field select {
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    background: #ffffff;
+
+    outline: none;
+}
+
+
+.search-field input:focus,
+.search-field select:focus {
+
+    border-color: #ff5722;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+
+
+.order-search-btn {
+
+    height: 44px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff5722;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.order-search-btn:hover {
+
+    background: #e64a19;
+
+    transform: translateY(-1px);
+}
+
+
+.clear-filter-btn {
+
+    height: 44px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    border: 1px solid #dddddd;
+
+    color: #555;
+
+    background: #ffffff;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+
+.clear-filter-btn:hover {
+
+    background: #f5f5f5;
+}
+
+
+.filter-result-info {
+
+    margin-bottom: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+.filter-result-info strong {
+
+    color: #222;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .order-search-form {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .search-field {
+
+        width: 100%;
+    }
+
+
+    .order-search-btn,
+    .clear-filter-btn {
+
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   CUSTOMER ORDER TRACKING
+========================================= */
+
+.track-order-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+
+.track-order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.track-order-header h1 {
+    margin: 0 0 8px;
+}
+
+
+.track-order-header p {
+    margin: 0;
+    color: #777;
+}
+
+
+.tracking-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.tracking-card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   TRACKING HEADER
+========================================= */
+
+.tracking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.tracking-card-header h2 {
+    margin-bottom: 8px;
+}
+
+
+.tracking-card-header p {
+    margin: 0;
+    color: #777;
+}
+
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.tracking-timeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 30px;
+}
+
+
+.tracking-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 120px;
+}
+
+
+.tracking-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #eeeeee;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+.tracking-step.completed .tracking-icon {
+    background: #ff5722;
+    color: #ffffff;
+}
+
+
+.tracking-step.current .tracking-icon {
+    box-shadow:
+        0 0 0 5px rgba(255, 87, 34, 0.15);
+}
+
+
+.tracking-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+
+.tracking-info span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #ff5722;
+}
+
+
+.tracking-line {
+    flex: 1;
+    height: 3px;
+    background: #eeeeee;
+    min-width: 30px;
+    margin-bottom: 45px;
+}
+
+
+.tracking-line.completed {
+    background: #ff5722;
+}
+
+
+/* =========================================
+   ORDER ITEMS
+========================================= */
+
+.tracking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.tracking-item:last-child {
+    border-bottom: none;
+}
+
+
+.tracking-item p {
+    margin: 6px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   ORDER SUMMARY
+========================================= */
+
+.order-summary > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+
+.tracking-total {
+    border-top: 2px solid #eeeeee;
+    margin-top: 10px;
+    padding-top: 20px !important;
+    font-size: 20px;
+}
+
+
+.tracking-payment-status {
+    margin-top: 15px;
+    padding: 15px !important;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+
+/* =========================================
+   CANCELLED ORDER
+========================================= */
+
+.cancelled-order-message {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+}
+
+
+.cancelled-order-message h2 {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .track-order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .tracking-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .tracking-timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+
+    .tracking-step {
+        flex-direction: row;
+        text-align: left;
+        min-width: auto;
+        width: 100%;
+        gap: 15px;
+    }
+
+
+    .tracking-icon {
+        flex-shrink: 0;
+    }
+
+
+    .tracking-line {
+        width: 3px;
+        height: 25px;
+        min-width: 3px;
+        margin-left: 21px;
+        margin-bottom: 0;
+    }
+
+
+    .tracking-item {
+        gap: 15px;
+    }
+
+}
+
+/* =========================================
+   ORDER STATUS NOTIFICATION
+========================================= */
+
+.order-status-notification {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffcc80;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* ==========================================
+   RESTAURANT PAYMENT STATUS
+========================================== */
+
+.restaurant-payment-status {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 15px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #eee;
+
+}
+
+
+.restaurant-payment-status span {
+
+    font-weight: 600;
+
+}
+
+
+.payment-paid {
+
+    color: #198754;
+
+}
+
+
+.payment-pending {
+
+    color: #f0ad00;
+
+}
+
+
+.payment-failed {
+
+    color: #dc3545;
+
+}
+
+/* ==========================================
+   CHECKOUT ITEM PRICE
+========================================== */
+
+.checkout-item-price {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #777;
+}
+
+
+/* =========================================
+   RESTAURANT ANALYTICS
+========================================= */
+
+.restaurant-analytics-page {
+    padding: 40px 0 80px;
+}
+
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.analytics-view-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+.analytics-section {
+    margin-top: 40px;
+}
+
+
+.analytics-chart-section {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.analytics-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.analytics-section-header h2 {
+    margin: 0 0 5px;
+}
+
+
+.analytics-section-header p {
+    margin: 0;
+}
+
+
+.analytics-chart-container {
+    position: relative;
+    height: 320px;
+    width: 100%;
+}
+
+
+.popular-foods-section {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.popular-food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.popular-food-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f8f8;
+}
+
+
+.popular-food-rank {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+
+.popular-food-name {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+.popular-food-name span {
+    font-size: 13px;
+}
+
+
+.popular-food-quantity {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.no-popular-foods {
+    padding: 30px;
+    text-align: center;
+}
+/* Shared management and form controls */
+.action-form { display:inline; margin:0; }
+.action-form button { font:inherit; cursor:pointer; }
+.flash-messages { padding:16px; }
+.flash { padding:12px 18px; border-radius:10px; background:#fff3e8; color:#73300d; }
+.management { padding:48px 20px; min-height:65vh; }
+.management h1 { margin-bottom:20px; }
+.management-nav { display:flex; flex-wrap:wrap; gap:20px; margin:24px 0; }
+.management-search { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:24px 0; }
+.management input,.management select,.management button { padding:10px; border:1px solid #ddd; border-radius:8px; font:inherit; }
+.management button { background:#ff6b35; color:white; cursor:pointer; }
+.table-scroll { overflow-x:auto; margin:24px 0; }
+.management table { width:100%; border-collapse:collapse; text-align:left; }
+.management th,.management td { padding:14px; border-bottom:1px solid #eee; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:20px; }
+.metric-grid article { background:#fff5ef; padding:24px; border-radius:16px; }
+@media(max-width:640px) { .management { padding:24px 12px; } .management-nav { gap:12px; } }
+
+.navbar .nav-links { display:flex; list-style:none; align-items:center; gap:18px; flex-wrap:wrap; }
+.navbar nav { min-width:0; }
+.management h2 { margin:30px 0 20px; }
+.management article h2 { margin:0; }
+@media(max-width:900px) { .navbar .container { height:auto; min-height:85px; gap:16px; padding:16px 0; flex-wrap:wrap; } .navbar .nav-links { display:flex; gap:12px; font-size:14px; } }

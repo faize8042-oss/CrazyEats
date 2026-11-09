@@ -1,0 +1,358 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ food.name }} | CrazyEats
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            {% if user.is_authenticated %}
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="login-btn"
+                >
+                    Profile
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    class="login-btn"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="{% url 'register' %}"
+                    class="signup-btn"
+                >
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     FOOD DETAIL
+========================================== -->
+
+<section class="food-detail">
+
+    <div class="container">
+
+        <div class="food-detail-container">
+
+
+            <!-- FOOD IMAGE -->
+
+            <div class="food-detail-image">
+
+                {% if food.image %}
+
+                    <img
+                        src="{{ food.image.url }}"
+                        alt="{{ food.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="food-detail-placeholder">
+                        🍽️
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- FOOD INFORMATION -->
+
+            <div class="food-detail-info">
+
+
+                <p class="food-category">
+
+                    {{ food.category.name }}
+
+                </p>
+
+
+                <h1>
+                    {{ food.name }}
+                </h1>
+
+
+                {% if food.description %}
+
+                    <p class="food-description">
+                        {{ food.description }}
+                    </p>
+
+                {% endif %}
+
+
+                <!-- RATING -->
+
+                <div class="food-rating">
+
+                    ⭐ {{ food.rating }}
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="food-detail-price">
+
+
+                    {% if food.discount_price %}
+
+                        <span class="old-price">
+                            {{ currency }} {{ food.price }}
+                        </span>
+
+                        <strong>
+                            {{ currency }} {{ food.discount_price }}
+                        </strong>
+
+                    {% else %}
+
+                        <strong>
+                            {{ currency }} {{ food.price }}
+                        </strong>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- EXTRA INFORMATION -->
+
+                <div class="food-extra-info">
+
+
+                    <div>
+
+                        <span>
+                            ⏱️
+                        </span>
+
+                        <strong>
+                            Preparation
+                        </strong>
+
+                        <p>
+                            {{ food.preparation_time }} minutes
+                        </p>
+
+                    </div>
+
+
+                    {% if food.calories %}
+
+                        <div>
+
+                            <span>
+                                🔥
+                            </span>
+
+                            <strong>
+                                Calories
+                            </strong>
+
+                            <p>
+                                {{ food.calories }} kcal
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- RESTAURANT -->
+
+                <div class="food-restaurant">
+
+
+                    <span>
+                        Restaurant
+                    </span>
+
+
+                    <a
+                        href="{% url 'restaurant_detail' food.restaurant.id %}"
+                    >
+                        {{ food.restaurant.name }}
+                    </a>
+
+
+                </div>
+
+
+                <!-- ADD TO CART -->
+
+                <form method="post" action="{% url 'add_to_cart' food.id %}" class="action-form">{% csrf_token %}<button type="submit" 
+                    
+                    class="food-add-cart-btn"
+                >
+                    Add to Cart
+                </button></form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'restaurants' %}">
+                        Restaurants
+                    </a>
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Restaurant
+                </h3>
+
+                <p>
+                    {{ food.restaurant.name }}
+                </p>
+
+                <p>
+                    {{ food.restaurant.phone }}
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

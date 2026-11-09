@@ -1,0 +1,768 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Restaurant Dashboard | CrazyEats
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <span>
+                {{ request.user.username }}
+            </span>
+
+            <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit" 
+                
+                class="signup-btn"
+            >
+                Logout
+            </button></form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     DASHBOARD
+========================================== -->
+
+<section class="restaurant-dashboard">
+
+    <div class="container">
+
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    Restaurant Dashboard
+                </p>
+
+                <h1>
+                    Welcome, {{ restaurant.name }}
+                </h1>
+
+                <p>
+                    Manage your restaurant and monitor your orders.
+                </p>
+
+            </div>
+
+
+            <div class="restaurant-status">
+
+                {% if restaurant.is_open %}
+
+                <span class="status-open">
+                    ● Open
+                </span>
+
+                {% else %}
+
+                <span class="status-closed">
+                    ● Closed
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RESTAURANT SELECTOR -->
+
+            <div class="restaurant-selector">
+
+                <form method="GET">
+
+                    <label for="restaurant">
+                        Manage Restaurant
+                    </label>
+
+                    <select
+                        name="restaurant"
+                        id="restaurant"
+                        onchange="this.form.submit()"
+                    >
+
+                        {% for item in restaurants %}
+
+                        <option
+                            value="{{ item.id }}"
+                            {% if item.id == restaurant.id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ item.name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================== -->
+
+        <div class="dashboard-stats">
+
+
+            <!-- TOTAL FOOD -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-icon">
+                    🍔
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ total_foods }}
+                    </h3>
+
+                    <p>
+                        Total Food Items
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVAILABLE FOOD -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ available_foods }}
+                    </h3>
+
+                    <p>
+                        Available Items
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL ORDERS -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ total_orders }}
+                    </h3>
+
+                    <p>
+                        Total Orders
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVE ORDERS -->
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ pending_orders }}
+                    </h3>
+
+                    <p>
+                        Active Orders
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             RESTAURANT ANALYTICS
+        ========================================== -->
+
+        <section class="dashboard-analytics">
+
+            <div class="analytics-header">
+
+                <div>
+
+                    <h2>
+                        Dashboard Overview
+                    </h2>
+
+                    <p>
+                        Monitor your restaurant performance.
+                    </p>
+
+                </div>
+
+
+                <!-- FULL ANALYTICS BUTTON -->
+
+                <a
+                    href="{% url 'restaurant_analytics' %}?restaurant={{ restaurant.id }}"
+                    class="analytics-view-btn"
+                >
+                    View Full Analytics →
+                </a>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <!-- TOTAL ORDERS -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ total_orders }}
+                        </h3>
+
+                        <p>
+                            Total Orders
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PENDING -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ pending_orders }}
+                        </h3>
+
+                        <p>
+                            Pending Orders
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PREPARING -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        👨‍🍳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ preparing_orders }}
+                        </h3>
+
+                        <p>
+                            Preparing
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OUT FOR DELIVERY -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        🛵
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ out_for_delivery_orders }}
+                        </h3>
+
+                        <p>
+                            Out for Delivery
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DELIVERED -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ delivered_orders }}
+                        </h3>
+
+                        <p>
+                            Delivered
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CANCELLED -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        ❌
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ cancelled_orders }}
+                        </h3>
+
+                        <p>
+                            Cancelled
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVENUE -->
+
+                <div class="analytics-card revenue-card">
+
+                    <div class="analytics-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ currency }} {{ total_revenue }}
+                        </h3>
+
+                        <p>
+                            Total Revenue
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             RECENT ORDERS
+        ========================================== -->
+
+        <section class="recent-orders-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Recent Orders
+                    </h2>
+
+                    <p>
+                        Your latest customer orders.
+                    </p>
+
+                </div>
+
+                <a
+                    href="{% url 'restaurant_orders' %}?restaurant={{ restaurant.id }}"
+                >
+                    View All Orders →
+                </a>
+
+            </div>
+
+
+            {% if recent_orders %}
+
+            <div class="recent-orders-table">
+
+                <div class="table-header">
+
+                    <span>
+                        Order
+                    </span>
+
+                    <span>
+                        Restaurant
+                    </span>
+
+                    <span>
+                        Customer
+                    </span>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span>
+                        Status
+                    </span>
+
+                </div>
+
+
+                {% for order in recent_orders %}
+
+                <div class="table-row">
+
+                    <span>
+                        #{{ order.id }}
+                    </span>
+
+                    <span>
+                        {{ order.restaurant.name }}
+                    </span>
+
+                    <span>
+                        {{ order.user.username }}
+                    </span>
+
+                    <span>
+                        {{ currency }} {{ order.total }}
+                    </span>
+
+                    <span>
+
+                        <span
+                            class="dashboard-status status-{{ order.status }}"
+                        >
+                            {{ order.get_status_display }}
+                        </span>
+
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <div class="no-recent-orders">
+
+                <p>
+                    No orders have been placed yet.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =========================================
+             QUICK ACTIONS
+        ========================================== -->
+
+        <section class="dashboard-section">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+
+            <div class="quick-actions">
+
+
+                <!-- MANAGE MENU -->
+
+                <a
+                    href="{% url 'restaurant_menu' %}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        🍽️
+                    </div>
+
+                    <h3>
+                        Manage Menu
+                    </h3>
+
+                    <p>
+                        Add, edit or remove food items.
+                    </p>
+
+                </a>
+
+
+                <!-- MANAGE ORDERS -->
+
+                <a
+                    href="{% url 'restaurant_orders' %}?restaurant={{ restaurant.id }}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Manage Orders
+                    </h3>
+
+                    <p>
+                        View and manage customer orders.
+                    </p>
+
+                </a>
+
+
+                <!-- MANAGE CATEGORIES -->
+
+                <a
+                    href="{% url 'category_management' %}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📂
+                    </div>
+
+                    <h3>
+                        Manage Categories
+                    </h3>
+
+                    <p>
+                        Create and manage food categories.
+                    </p>
+
+                </a>
+
+
+                <!-- RESTAURANT SETTINGS -->
+
+                <a
+                    href="{% url 'restaurant_settings' %}?restaurant={{ restaurant.id }}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Restaurant Settings
+                    </h3>
+
+                    <p>
+                        Update your restaurant information.
+                    </p>
+
+                </a>
+
+
+                <!-- ADD FOOD -->
+
+                <a
+                    href="{% url 'add_food' %}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        ➕
+                    </div>
+
+                    <h3>
+                        Add Food
+                    </h3>
+
+                    <p>
+                        Add a new item to your menu.
+                    </p>
+
+                </a>
+
+
+                <!-- VIEW ORDERS -->
+
+                <a
+                    href="{% url 'restaurant_orders' %}?restaurant={{ restaurant.id }}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        View Orders
+                    </h3>
+
+                    <p>
+                        Monitor customer orders.
+                    </p>
+
+                </a>
+
+
+                <!-- FULL ANALYTICS -->
+
+                <a
+                    href="{% url 'restaurant_analytics' %}?restaurant={{ restaurant.id }}"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Analytics
+                    </h3>
+
+                    <p>
+                        View detailed restaurant analytics.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</section>
+
+
+</body>
+
+</html>

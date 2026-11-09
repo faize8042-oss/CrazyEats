@@ -1,0 +1,895 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="restaurant-orders-page">
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <div class="orders-header">
+
+        <div>
+
+            <h1>
+                Restaurant Orders
+            </h1>
+
+            <p>
+                Manage orders placed at your restaurants.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'restaurant_dashboard' %}"
+            class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- =========================================
+         MESSAGES
+    ========================================== -->
+
+    {% if messages %}
+
+    <div class="messages-container">
+
+        {% for message in messages %}
+
+        <div class="message {{ message.tags }}">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- =========================================
+         ORDERS AVAILABLE
+    ========================================== -->
+
+    {% if orders %}
+
+
+    <!-- =========================================
+         ORDER STATISTICS
+    ========================================== -->
+
+    <div class="order-statistics">
+
+        <!-- TOTAL -->
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                📦
+            </span>
+
+            <div>
+
+                <span class="stat-label">
+                    Total Orders
+                </span>
+
+                <strong>
+                    {{ total_orders }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                ⏳
+            </span>
+
+            <div>
+
+                <span class="stat-label">
+                    Pending
+                </span>
+
+                <strong>
+                    {{ pending_orders }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREPARING -->
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                🔥
+            </span>
+
+            <div>
+
+                <span class="stat-label">
+                    Preparing
+                </span>
+
+                <strong>
+                    {{ preparing_orders }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- DELIVERED -->
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                ✅
+            </span>
+
+            <div>
+
+                <span class="stat-label">
+                    Delivered
+                </span>
+
+                <strong>
+                    {{ delivered_orders }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- CANCELLED -->
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                ❌
+            </span>
+
+            <div>
+
+                <span class="stat-label">
+                    Cancelled
+                </span>
+
+                <strong>
+                    {{ cancelled_orders }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         FILTERS
+    ========================================== -->
+
+    <div class="order-filters">
+
+        <!-- =====================================
+             SEARCH
+        ====================================== -->
+
+        <div class="order-search-section">
+
+            <form
+                method="GET"
+                class="order-search-form"
+            >
+
+                <!-- RESTAURANT -->
+
+                {% if restaurant %}
+
+                <input
+                    type="hidden"
+                    name="restaurant"
+                    value="{{ restaurant.id }}"
+                >
+
+                {% endif %}
+
+
+                <!-- CUSTOMER SEARCH -->
+
+                <div class="search-field">
+
+                    <label for="search">
+                        Search Customer
+                    </label>
+
+                    <input
+                        type="text"
+                        id="search"
+                        name="search"
+                        value="{{ search_query }}"
+                        placeholder="Username or customer name..."
+                    >
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="search-field">
+
+                    <label for="date">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        value="{{ selected_date }}"
+                    >
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="search-field">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option value="">
+                            All Statuses
+                        </option>
+
+
+                        <option
+                            value="pending"
+                            {% if selected_status == "pending" %}
+                                selected
+                            {% endif %}
+                        >
+                            Pending
+                        </option>
+
+
+                        <option
+                            value="confirmed"
+                            {% if selected_status == "confirmed" %}
+                                selected
+                            {% endif %}
+                        >
+                            Confirmed
+                        </option>
+
+
+                        <option
+                            value="preparing"
+                            {% if selected_status == "preparing" %}
+                                selected
+                            {% endif %}
+                        >
+                            Preparing
+                        </option>
+
+
+                        <option
+                            value="out_for_delivery"
+                            {% if selected_status == "out_for_delivery" %}
+                                selected
+                            {% endif %}
+                        >
+                            Out for Delivery
+                        </option>
+
+
+                        <option
+                            value="delivered"
+                            {% if selected_status == "delivered" %}
+                                selected
+                            {% endif %}
+                        >
+                            Delivered
+                        </option>
+
+
+                        <option
+                            value="cancelled"
+                            {% if selected_status == "cancelled" %}
+                                selected
+                            {% endif %}
+                        >
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SEARCH BUTTON -->
+
+                <button
+                    type="submit"
+                    class="order-search-btn"
+                >
+                    🔎 Search
+                </button>
+
+
+                <!-- CLEAR -->
+
+                <a
+                    href="{% url 'restaurant_orders' %}"
+                    class="clear-filter-btn"
+                >
+                    Clear
+                </a>
+
+            </form>
+
+        </div>
+
+
+        <!-- =====================================
+             FILTER RESULT INFORMATION
+        ====================================== -->
+
+        <div class="filter-result-info">
+
+            {% if search_query or selected_status or selected_date %}
+
+                Showing
+
+                <strong>
+                    {{ orders|length }}
+                </strong>
+
+                matching order{{ orders|length|pluralize }}.
+
+            {% else %}
+
+                Showing
+
+                <strong>
+                    {{ total_orders }}
+                </strong>
+
+                order{{ total_orders|pluralize }}.
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =====================================
+             QUICK STATUS FILTERS
+        ====================================== -->
+
+        <div class="status-filter-links">
+
+            <a
+                href="{% url 'restaurant_orders' %}"
+                class="{% if not selected_status %}active{% endif %}"
+            >
+                All
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=pending"
+                class="{% if selected_status == 'pending' %}active{% endif %}"
+            >
+                Pending
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=confirmed"
+                class="{% if selected_status == 'confirmed' %}active{% endif %}"
+            >
+                Confirmed
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=preparing"
+                class="{% if selected_status == 'preparing' %}active{% endif %}"
+            >
+                Preparing
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=out_for_delivery"
+                class="{% if selected_status == 'out_for_delivery' %}active{% endif %}"
+            >
+                Out for Delivery
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=delivered"
+                class="{% if selected_status == 'delivered' %}active{% endif %}"
+            >
+                Delivered
+            </a>
+
+
+            <a
+                href="{% url 'restaurant_orders' %}?status=cancelled"
+                class="{% if selected_status == 'cancelled' %}active{% endif %}"
+            >
+                Cancelled
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         RESTAURANT SELECTOR
+    ========================================== -->
+
+    {% if restaurants|length > 1 %}
+
+    <div class="restaurant-selector">
+
+        <label for="restaurant-select">
+            Select Restaurant
+        </label>
+
+        <select
+            id="restaurant-select"
+            onchange="changeRestaurant(this.value)"
+        >
+
+            {% for item in restaurants %}
+
+            <option
+                value="{{ item.id }}"
+                {% if restaurant and item.id == restaurant.id %}
+                    selected
+                {% endif %}
+            >
+                {{ item.name }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+
+    <script>
+
+        function changeRestaurant(id) {
+
+            window.location.href =
+                "{% url 'restaurant_orders' %}?restaurant=" + id;
+
+        }
+
+    </script>
+
+    {% endif %}
+
+
+    <!-- =========================================
+         ORDERS LIST
+    ========================================== -->
+
+    <div class="orders-list">
+
+        {% for order in orders %}
+
+        <div class="restaurant-order-card">
+
+
+            <!-- =================================
+                 ORDER HEADER
+            ================================== -->
+
+            <div class="order-card-header">
+
+                <div>
+
+                    <h2>
+                        Order #{{ order.id }}
+                    </h2>
+
+                    <p class="order-date">
+                        {{ order.created_at|date:"d M Y, h:i A" }}
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="order-status status-{{ order.status }}"
+                >
+                    {{ order.get_status_display }}
+                </span>
+
+            </div>
+
+
+            <!-- =================================
+                 RESTAURANT
+            ================================== -->
+
+            <div class="order-restaurant">
+
+                <strong>
+                    Restaurant:
+                </strong>
+
+                {{ order.restaurant.name }}
+
+            </div>
+
+
+            <!-- =================================
+                 CUSTOMER
+            ================================== -->
+
+            <div class="customer-section">
+
+                <h3>
+                    Customer
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Name:
+                    </strong>
+
+                    {{ order.user.get_full_name|default:order.user.username }}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Username:
+                    </strong>
+
+                    {{ order.user.username }}
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================
+                 DELIVERY INFORMATION
+            ================================== -->
+
+            <div class="delivery-section">
+
+                <h3>
+                    Delivery Information
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Phone:
+                    </strong>
+
+                    {{ order.delivery_phone }}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Address:
+                    </strong>
+
+                    {{ order.delivery_address }}
+
+                </p>
+
+
+                {% if order.notes %}
+
+                <p>
+
+                    <strong>
+                        Notes:
+                    </strong>
+
+                    {{ order.notes }}
+
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================
+                 ORDER ITEMS
+            ================================== -->
+
+            <div class="order-items-section">
+
+                <h3>
+                    Ordered Items
+                </h3>
+
+
+                {% for item in order.items.all %}
+
+                <div class="restaurant-order-item">
+
+                    <div>
+
+                        <strong>
+                            {{ item.food_name }}
+                        </strong>
+
+                        <span>
+                            × {{ item.quantity }}
+                        </span>
+
+                    </div>
+
+
+                    <strong>
+                        {{ currency }} {{ item.subtotal }}
+                    </strong>
+
+                </div>
+
+                {% empty %}
+
+                <p>
+                    No items found for this order.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- =================================
+                 PAYMENT
+            ================================== -->
+
+            <div class="order-payment">
+
+                <!-- SUBTOTAL -->
+
+                <div>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ order.subtotal|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <!-- DELIVERY FEE -->
+
+                <div>
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ order.delivery_fee|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <!-- DISCOUNT -->
+
+                {% if order.discount > 0 %}
+
+                <div>
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <strong>
+                        - {{ currency }} {{ order.discount|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- TOTAL -->
+
+                <div class="order-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        {{ currency }} {{ order.total|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <!-- PAYMENT STATUS -->
+
+                <div class="restaurant-payment-status">
+
+                    <span>
+                        Payment Status
+                    </span>
+
+
+                    {% if order.payment_status == "paid" %}
+
+                    <strong class="payment-paid">
+                        ✓ Paid
+                    </strong>
+
+
+                    {% elif order.payment_status == "failed" %}
+
+                    <strong class="payment-failed">
+                        ✕ Failed
+                    </strong>
+
+
+                    {% else %}
+
+                    <strong class="payment-pending">
+                        ⏳ Pending
+                    </strong>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 UPDATE STATUS
+            ================================== -->
+
+            {% if order.available_statuses %}
+
+            <div class="status-update-section">
+
+                <h3>
+                    Update Order Status
+                </h3>
+
+
+                <form
+                    method="POST"
+                    action="{% url 'update_order_status' order.id %}"
+                >
+
+                    {% csrf_token %}
+
+
+                    <select
+                        name="status"
+                        required
+                    >
+
+                        <option value="">
+                            Select new status
+                        </option>
+
+
+                        {% for value, label in order.available_statuses %}
+
+                        <option value="{{ value }}">
+                            {{ label }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+
+                    <button type="submit">
+                        Update Status
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            {% else %}
+
+            <div class="order-completed-message">
+
+                {% if order.status == "delivered" %}
+
+                    ✓ This order has been delivered.
+
+                {% elif order.status == "cancelled" %}
+
+                    ✕ This order has been cancelled.
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =========================================
+         NO ORDERS
+    ========================================== -->
+
+    <div class="empty-orders">
+
+        <h2>
+            No Orders Yet
+        </h2>
+
+        <p>
+            Orders from your customers will appear here.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

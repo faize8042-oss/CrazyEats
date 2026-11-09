@@ -1,0 +1,642 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Profile | CrazyEats
+    </title>
+
+    <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+                href="/"
+                class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'orders' %}">
+                    My Orders
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a
+                    href="{% url 'profile' %}"
+                    class="login-btn"
+            >
+                Profile
+            </a>
+
+
+            <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit" 
+                    
+                    class="signup-btn"
+            >
+                Logout
+            </button></form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     PROFILE PAGE
+========================================== -->
+
+<section class="profile-page">
+
+    <div class="container">
+
+
+        <!-- ==================================
+             PROFILE HEADER
+        =================================== -->
+
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+
+                {{ user.username|first|upper }}
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Welcome, {{ user.first_name|default:user.username }}
+                </h1>
+
+                <p>
+                    Manage your CrazyEats account.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================
+             ACCOUNT INFORMATION
+        =================================== -->
+
+        <div class="profile-grid">
+
+
+            <div class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <h2>
+                        Account Information
+                    </h2>
+
+                    <a
+                            href="{% url 'edit_profile' %}"
+                            class="edit-profile-btn"
+                    >
+                        ✏️ Edit Profile
+                    </a>
+
+                    <span class="profile-icon">
+                        👤
+                    </span>
+
+                </div>
+
+
+                <div class="profile-info">
+
+
+                    <div class="profile-info-row">
+
+                        <span>
+                            Username
+                        </span>
+
+                        <strong>
+                            {{ user.username }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-info-row">
+
+                        <span>
+                            Full Name
+                        </span>
+
+                        <strong>
+
+                            {% if user.get_full_name %}
+
+                            {{ user.get_full_name }}
+
+                            {% else %}
+
+                            Not provided
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-info-row">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong>
+                            {{ user.email|default:"Not provided" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-info-row">
+
+                        <span>
+                            Member Since
+                        </span>
+
+                        <strong>
+                            {{ user.date_joined|date:"d M Y" }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 ACCOUNT ACTIONS
+            =================================== -->
+
+            <div class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <h2>
+                        Account
+                    </h2>
+
+                    <span class="profile-icon">
+                        ⚙️
+                    </span>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <a
+                            href="{% url 'orders' %}"
+                            class="profile-action"
+                    >
+
+                        <span>
+                            📦
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                My Orders
+                            </strong>
+
+                            <small>
+                                View your order history
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                            href="{% url 'cart' %}"
+                            class="profile-action"
+                    >
+
+                        <span>
+                            🛒
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                My Cart
+                            </strong>
+
+                            <small>
+                                View items in your cart
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                            href="{% url 'change_password' %}"
+                            class="profile-action"
+                    >
+
+    <span>
+        🔐
+    </span>
+
+                        <div>
+
+                            <strong>
+                                Change Password
+                            </strong>
+
+                            <small>
+                                Update your account password
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                    <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit" 
+                            
+                            class="profile-action logout-action"
+                    >
+
+                        <span>
+                            🚪
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Logout
+                            </strong>
+
+                            <small>
+                                Sign out of your account
+                            </small>
+
+                        </div>
+
+                    </button></form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================
+             ORDER STATISTICS
+        =================================== -->
+
+        <div class="profile-stats">
+
+
+            <div class="profile-stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Orders
+                    </span>
+
+                    <strong>
+                        {{ total_orders }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-stat-card">
+
+                <div class="stat-icon">
+                    🚚
+                </div>
+
+                <div>
+
+                    <span>
+                        Active Orders
+                    </span>
+
+                    <strong>
+                        {{ pending_orders }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <span>
+                        Delivered
+                    </span>
+
+                    <strong>
+                        {{ delivered_orders }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================
+             RECENT ORDERS
+        =================================== -->
+
+        <div class="recent-orders-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <h2>
+                        Recent Orders
+                    </h2>
+
+                    <p>
+                        Your latest orders.
+                    </p>
+
+                </div>
+
+
+                <a
+                        href="{% url 'orders' %}"
+                        class="see-all-btn"
+                >
+                    See All
+                </a>
+
+            </div>
+
+
+            {% if recent_orders %}
+
+
+            <div class="recent-orders">
+
+
+                {% for order in recent_orders %}
+
+                <div class="recent-order-card">
+
+
+                    <div>
+
+                        <h3>
+                            Order #{{ order.id }}
+                        </h3>
+
+                        <p>
+                            {{ order.restaurant.name }}
+                        </p>
+
+                        <small>
+                            {{ order.created_at|date:"d M Y, h:i A" }}
+                        </small>
+
+                    </div>
+
+
+                    <div class="recent-order-right">
+
+                                <span
+                                        class="
+                                    status-{{ order.status }}
+                                    recent-status
+                                    "
+                                >
+                                    {{ order.get_status_display }}
+                                </span>
+
+
+                        <strong>
+                            {{ order.currency }} {{ order.total }}
+                        </strong>
+
+
+                        <a
+                                href="{% url 'order_detail' order.id %}"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <div class="profile-empty">
+
+                <div>
+                    📦
+                </div>
+
+                <h3>
+                    No Orders Yet
+                </h3>
+
+                <p>
+                    Once you place an order,
+                    it will appear here.
+                </p>
+
+                <a
+                        href="{% url 'restaurants' %}"
+                        class="browse-btn"
+                >
+                    Browse Restaurants
+                </a>
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'restaurants' %}">
+                        Restaurants
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'orders' %}">
+                        My Orders
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'cart' %}">
+                        My Cart
+                    </a>
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <p>
+                    Contact us anytime.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

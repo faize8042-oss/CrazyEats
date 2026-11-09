@@ -1,0 +1,589 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="track-order-page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <div class="track-order-header">
+
+        <div>
+
+            <h1>
+                Track Your Order
+            </h1>
+
+            {% if order %}
+
+                <p>
+                    Order #{{ order.id }}
+                    ·
+                    {{ order.restaurant.name }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <a
+                href="{% url 'orders' %}"
+                class="back-btn"
+        >
+            ← My Orders
+        </a>
+
+    </div>
+
+
+    {% if order %}
+
+
+    <!-- =========================================
+         STATUS NOTIFICATION
+    ========================================== -->
+
+    <div class="order-status-notification">
+
+        {% if order.status == "pending" %}
+
+            🔔 Your order has been placed successfully.
+
+        {% elif order.status == "confirmed" %}
+
+            🔔 Your order has been confirmed by the restaurant.
+
+        {% elif order.status == "preparing" %}
+
+            👨‍🍳 Your order is currently being prepared.
+
+        {% elif order.status == "out_for_delivery" %}
+
+            🛵 Your order is out for delivery.
+
+        {% elif order.status == "delivered" %}
+
+            🎉 Your order has been delivered. Enjoy your meal!
+
+        {% elif order.status == "cancelled" %}
+
+            ❌ Your order has been cancelled.
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER INFORMATION
+    ========================================== -->
+
+    <div class="tracking-card">
+
+        <div class="tracking-card-header">
+
+            <div>
+
+                <h2>
+                    Order #{{ order.id }}
+                </h2>
+
+                <p>
+                    Placed on
+                    {{ order.created_at|date:"d M Y, h:i A" }}
+                </p>
+
+            </div>
+
+
+            <span
+                    class="order-status status-{{ order.status }}"
+            >
+                {{ order.get_status_display }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER TIMELINE
+    ========================================== -->
+
+    <div class="tracking-card">
+
+        <h2>
+            Order Progress
+        </h2>
+
+
+        <div class="tracking-timeline">
+
+            {% for step in status_steps %}
+
+                <div class="tracking-step
+                    {% if step.completed %}
+                        completed
+                    {% endif %}
+                    {% if step.current %}
+                        current
+                    {% endif %}
+                ">
+
+
+                    <div class="tracking-icon">
+
+                        {% if step.completed %}
+
+                            ✓
+
+                        {% else %}
+
+                            {{ forloop.counter }}
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="tracking-info">
+
+                        <strong>
+                            {{ step.label }}
+                        </strong>
+
+
+                        {% if step.current %}
+
+                            <span>
+                                Current Status
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+                {% if not forloop.last %}
+
+                    <div class="tracking-line
+                        {% if step.completed %}
+                            completed
+                        {% endif %}
+                    ">
+                    </div>
+
+                {% endif %}
+
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         CANCELLED ORDER
+    ========================================== -->
+
+    {% if order.status == "cancelled" %}
+
+        <div class="cancelled-order-message">
+
+            <h2>
+                ❌ Order Cancelled
+            </h2>
+
+            <p>
+                Unfortunately, this order has been cancelled.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- =========================================
+         RESTAURANT
+    ========================================== -->
+
+    <div class="tracking-card">
+
+        <h2>
+            Restaurant
+        </h2>
+
+        <h3>
+            {{ order.restaurant.name }}
+        </h3>
+
+        <p>
+            {{ order.restaurant.address }}
+        </p>
+
+
+        {% if order.restaurant.phone %}
+
+            <p>
+
+                <strong>
+                    Phone:
+                </strong>
+
+                {{ order.restaurant.phone }}
+
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER ITEMS
+    ========================================== -->
+
+    <div class="tracking-card">
+
+        <h2>
+            Ordered Items
+        </h2>
+
+
+        {% for item in order.items.all %}
+
+            <div class="tracking-item">
+
+                <div>
+
+                    <strong>
+                        {{ item.food_name }}
+                    </strong>
+
+                    <p>
+                        {{ order.currency }} {{ item.price|floatformat:2 }}
+                        ×
+                        {{ item.quantity }}
+                    </p>
+
+                </div>
+
+
+                <strong>
+                    {{ order.currency }} {{ item.subtotal|floatformat:2 }}
+                </strong>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                No items found.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- =========================================
+         DELIVERY INFORMATION
+    ========================================== -->
+
+    <div class="tracking-card">
+
+        <h2>
+            Delivery Information
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Phone:
+            </strong>
+
+            {{ order.delivery_phone }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Address:
+            </strong>
+
+            {{ order.delivery_address }}
+
+        </p>
+
+
+        {% if order.notes %}
+
+            <p>
+
+                <strong>
+                    Notes:
+                </strong>
+
+                {{ order.notes }}
+
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =========================================
+         PAYMENT SUMMARY
+    ========================================== -->
+
+    <div class="tracking-card order-summary">
+
+        <h2>
+            Payment Summary
+        </h2>
+
+
+        <!-- SUBTOTAL -->
+
+        <div>
+
+            <span>
+                Subtotal
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.subtotal|floatformat:2 }}
+            </strong>
+
+        </div>
+
+
+        <!-- DELIVERY FEE -->
+
+        <div>
+
+            <span>
+                Delivery Fee
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.delivery_fee|floatformat:2 }}
+            </strong>
+
+        </div>
+
+
+        <!-- DISCOUNT -->
+
+        {% if order.discount > 0 %}
+
+            <div>
+
+                <span>
+                    Discount
+                </span>
+
+                <strong>
+                    - {{ order.currency }} {{ order.discount|floatformat:2 }}
+                </strong>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- TOTAL -->
+
+        <div class="tracking-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.total|floatformat:2 }}
+            </strong>
+
+        </div>
+
+
+        <!-- =========================================
+             PAYMENT STATUS
+        ========================================== -->
+
+        <div class="tracking-payment-status">
+
+            <span>
+                Payment Status
+            </span>
+
+
+            {% if order.payment_status == "paid" %}
+
+                <strong class="payment-paid">
+                    ✓ Paid
+                </strong>
+
+
+            {% elif order.payment_status == "failed" %}
+
+                <strong class="payment-failed">
+                    ✕ Failed
+                </strong>
+
+
+            {% else %}
+
+                <strong class="payment-pending">
+                    ⏳ Pending
+                </strong>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =========================================
+             PAYMENT METHOD
+        ========================================== -->
+
+        {% if order.payment %}
+
+            <div class="tracking-payment-method">
+
+                <span>
+                    Payment Method
+                </span>
+
+                <strong>
+                    {{ order.payment.get_payment_method_display }}
+                </strong>
+
+            </div>
+
+
+            <!-- TRANSACTION ID -->
+
+            {% if order.payment.transaction_id %}
+
+                <div class="tracking-transaction">
+
+                    <span>
+                        Transaction ID
+                    </span>
+
+                    <strong>
+                        {{ order.payment.transaction_id }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- PAYMENT DATE -->
+
+            {% if order.payment.created_at %}
+
+                <div class="tracking-payment-date">
+
+                    <span>
+                        Payment Created
+                    </span>
+
+                    <strong>
+                        {{ order.payment.created_at|date:"d M Y, h:i A" }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =========================================
+         ACTIONS
+    ========================================== -->
+
+    <div class="order-actions">
+
+        <a
+                href="{% url 'orders' %}"
+                class="secondary-btn"
+        >
+            ← My Orders
+        </a>
+
+
+        <a
+                href="{% url 'order_detail' order.id %}"
+                class="primary-btn"
+        >
+            View Order Details
+        </a>
+
+
+        {% if order.status == "delivered" %}
+
+            <a
+                    href="{% url 'restaurants' %}"
+                    class="secondary-btn"
+            >
+                Order Again
+            </a>
+
+        {% endif %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =========================================
+         NO ACTIVE ORDER
+    ========================================== -->
+
+    <div class="empty-orders">
+
+        <h2>
+            No Active Order
+        </h2>
+
+        <p>
+            You currently don't have an active order to track.
+        </p>
+
+        <a
+                href="{% url 'restaurants' %}"
+                class="signup-btn"
+        >
+            Browse Restaurants
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}

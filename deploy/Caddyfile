@@ -1,0 +1,23 @@
+{$SITE_DOMAIN} {
+    encode zstd gzip
+    request_body {
+        max_size 12MB
+    }
+    @auth path /login/ /register/ /password-reset/*
+    header @auth Cache-Control "no-store"
+    handle_path /static/* {
+        root * /srv/static
+        file_server
+    }
+    handle_path /media/* {
+        root * /srv/media
+        header X-Content-Type-Options "nosniff"
+        header Content-Security-Policy "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; sandbox"
+        file_server
+    }
+    handle {
+        reverse_proxy web:8000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+}

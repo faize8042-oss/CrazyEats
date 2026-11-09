@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Platform analytics | CrazyEats{% endblock %}
+{% block content %}<section class="container management"><h1>Platform analytics</h1>
+<nav class="management-nav"><a href="{% url 'admin_dashboard' %}">Overview</a><a href="{% url 'admin_users' %}">Users</a><a href="{% url 'admin_restaurants' %}">Restaurants</a><a href="{% url 'admin_orders' %}">Orders</a><a href="{% url 'admin_analytics' %}">Analytics</a></nav>
+<div class="metric-grid"><article><h2>{{ total_users }}</h2><p>Users</p></article><article><h2>{{ total_restaurants }}</h2><p>Restaurants</p></article><article><h2>{{ total_orders }}</h2><p>Orders</p></article><article><h2>{{ pending_orders }}</h2><p>Pending orders</p></article><article><h2>{{ total_revenue|floatformat:2 }}</h2><p>Collected revenue from delivered orders</p></article></div><h2>Orders by status</h2>{% for row in by_status %}<p>{{ row.status }}: {{ row.count }}</p>{% empty %}<p>No orders yet.</p>{% endfor %}
+</section>{% endblock %}

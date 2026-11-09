@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="restaurant-order-detail-page">
+
+    <div class="orders-header">
+
+        <div>
+            <h1>
+                Order #{{ order.id }}
+            </h1>
+
+            <p>
+                {{ order.created_at|date:"d M Y, h:i A" }}
+            </p>
+        </div>
+
+        <a
+                href="{% url 'restaurant_orders' %}?restaurant={{ order.restaurant.id }}"
+                class="back-btn"
+        >
+            ← Back to Orders
+        </a>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div class="order-detail-card">
+
+        <div class="detail-card-title">
+            <h2>Order Status</h2>
+        </div>
+
+        <span class="order-status status-{{ order.status }}">
+            {{ order.get_status_display }}
+        </span>
+
+        <a
+                href="{% url 'restaurant_order_detail' order.id %}"
+                class="view-order-btn"
+        >
+            View Order
+        </a>
+
+    </div>
+
+
+    <!-- CUSTOMER -->
+
+    <div class="order-detail-card">
+
+        <div class="detail-card-title">
+            <h2>Customer Information</h2>
+        </div>
+
+        <p>
+            <strong>Name:</strong>
+            {{ order.user.get_full_name|default:order.user.username }}
+        </p>
+
+        <p>
+            <strong>Username:</strong>
+            {{ order.user.username }}
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            {{ order.delivery_phone }}
+        </p>
+
+    </div>
+
+
+    <!-- DELIVERY -->
+
+    <div class="order-detail-card">
+
+        <div class="detail-card-title">
+            <h2>Delivery Information</h2>
+        </div>
+
+        <p>
+            <strong>Address:</strong>
+            {{ order.delivery_address }}
+        </p>
+
+        {% if order.notes %}
+
+        <p>
+            <strong>Notes:</strong>
+            {{ order.notes }}
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ITEMS -->
+
+    <div class="order-detail-card">
+
+        <div class="detail-card-title">
+            <h2>Ordered Items</h2>
+        </div>
+
+        {% for item in order.items.all %}
+
+        <div class="detail-order-item">
+
+            <div>
+
+                <strong>
+                    {{ item.food_name }}
+                </strong>
+
+                <span>
+                        × {{ item.quantity }}
+                    </span>
+
+            </div>
+
+            <strong>
+                {{ order.currency }} {{ item.subtotal }}
+            </strong>
+
+        </div>
+
+        {% empty %}
+
+        <p>
+            No items found.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div class="order-detail-card">
+
+        <div class="detail-card-title">
+            <h2>Payment Summary</h2>
+        </div>
+
+        <div class="payment-row">
+
+            <span>
+                Subtotal
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.subtotal }}
+            </strong>
+
+        </div>
+
+
+        <div class="payment-row">
+
+            <span>
+                Delivery Fee
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.delivery_fee }}
+            </strong>
+
+        </div>
+
+
+        {% if order.discount > 0 %}
+
+        <div class="payment-row">
+
+                <span>
+                    Discount
+                </span>
+
+            <strong>
+                - {{ order.currency }} {{ order.discount }}
+            </strong>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="payment-row order-detail-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong>
+                {{ order.currency }} {{ order.total }}
+            </strong>
+
+        </div>
+
+
+        <div class="payment-status">
+
+            <strong>
+                Payment:
+            </strong>
+
+            {{ order.get_payment_status_display }}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

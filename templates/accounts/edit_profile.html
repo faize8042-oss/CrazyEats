@@ -1,0 +1,308 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Edit Profile | CrazyEats
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+            href="/"
+            class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'orders' %}">
+                    My Orders
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a
+                href="{% url 'profile' %}"
+                class="login-btn"
+            >
+                Profile
+            </a>
+
+            <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit" 
+                
+                class="signup-btn"
+            >
+                Logout
+            </button></form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     EDIT PROFILE
+========================================== -->
+
+<section class="edit-profile-page">
+
+    <div class="container">
+
+
+        <div class="edit-profile-card">
+
+
+            <div class="edit-profile-header">
+
+                <div class="edit-profile-icon">
+                    👤
+                </div>
+
+                <h1>
+                    Edit Profile
+                </h1>
+
+                <p>
+                    Update your personal information.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                class="profile-form"
+            >
+
+                {% csrf_token %}
+
+
+                {% if form.non_field_errors %}
+
+                    <div class="form-error">
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- FIRST NAME -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.first_name.id_for_label }}">
+                        First Name
+                    </label>
+
+                    {{ form.first_name }}
+
+                    {% if form.first_name.errors %}
+
+                        <div class="field-error">
+                            {{ form.first_name.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- LAST NAME -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.last_name.id_for_label }}">
+                        Last Name
+                    </label>
+
+                    {{ form.last_name }}
+
+                    {% if form.last_name.errors %}
+
+                        <div class="field-error">
+                            {{ form.last_name.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.email.id_for_label }}">
+                        Email Address
+                    </label>
+
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+
+                        <div class="field-error">
+                            {{ form.email.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="profile-form-buttons">
+
+                    <a
+                        href="{% url 'profile' %}"
+                        class="cancel-profile-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="save-profile-btn"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    Home
+                </p>
+
+                <p>
+                    Restaurants
+                </p>
+
+                <p>
+                    My Orders
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <p>
+                    Contact us anytime.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

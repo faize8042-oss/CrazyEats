@@ -1,0 +1,456 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ restaurant.name }} | CrazyEats
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            {% if user.is_authenticated %}
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="login-btn"
+                >
+                    Profile
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    class="login-btn"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="{% url 'register' %}"
+                    class="signup-btn"
+                >
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     RESTAURANT HEADER
+========================================== -->
+
+<section class="restaurant-detail-header">
+
+    <div class="container">
+
+
+        {% if restaurant.cover_image %}
+
+            <div class="restaurant-cover">
+
+                <img
+                    src="{{ restaurant.cover_image.url }}"
+                    alt="{{ restaurant.name }}"
+                >
+
+            </div>
+
+        {% endif %}
+
+
+        <div class="restaurant-header-content">
+
+
+            {% if restaurant.logo %}
+
+                <img
+                    src="{{ restaurant.logo.url }}"
+                    alt="{{ restaurant.name }}"
+                    class="restaurant-logo"
+                >
+
+            {% endif %}
+
+
+            <div class="restaurant-header-info">
+
+                <h1>
+                    {{ restaurant.name }}
+                </h1>
+
+
+                {% if restaurant.description %}
+
+                    <p>
+                        {{ restaurant.description }}
+                    </p>
+
+                {% endif %}
+
+
+                <div class="restaurant-meta">
+
+                    <span>
+                        ⭐ {{ restaurant.rating }}
+                    </span>
+
+                    <span>
+                        📍 {{ restaurant.address }}
+                    </span>
+
+                    <span>
+                        🚚 {{ currency }} {{ restaurant.delivery_fee }}
+                    </span>
+
+                    <span>
+                        🛒 Min. {{ currency }} {{ restaurant.minimum_order }}
+                    </span>
+
+                </div>
+
+
+                {% if restaurant.is_open %}
+
+                    <span class="restaurant-status open">
+                        Open Now
+                    </span>
+
+                {% else %}
+
+                    <span class="restaurant-status closed">
+                        Closed
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     RESTAURANT MENU
+========================================== -->
+
+<section class="restaurant-menu">
+
+    <div class="container">
+
+        <div class="menu-section-header">
+
+            <h2>
+                Our Menu
+            </h2>
+
+            <p>
+                Explore our delicious food.
+            </p>
+
+        </div>
+
+
+        {% if categories %}
+
+            <div class="restaurant-categories">
+
+                {% for category in categories %}
+
+                    <div class="menu-category">
+
+                        <div class="category-title">
+
+                            <h3>
+                                {{ category.name }}
+                            </h3>
+
+                            {% if category.description %}
+
+                                <p>
+                                    {{ category.description }}
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        {% if category.foods.all %}
+
+                            <div class="food-grid">
+
+                                {% for food in category.foods.all %}
+
+                                    {% if food.is_available %}
+
+                                        <div class="food-card">
+
+                                            <a
+                                                href="{% url 'food_detail' food.id %}"
+                                                class="food-card-image-link"
+                                            >
+
+                                                {% if food.image %}
+
+                                                    <img
+                                                        src="{{ food.image.url }}"
+                                                        alt="{{ food.name }}"
+                                                    >
+
+                                                {% else %}
+
+                                                    <div class="food-placeholder">
+                                                        🍽️
+                                                    </div>
+
+                                                {% endif %}
+
+                                            </a>
+
+
+                                            <div class="food-info">
+
+                                                <h4>
+
+                                                    <a
+                                                        href="{% url 'food_detail' food.id %}"
+                                                        class="food-name-link"
+                                                    >
+                                                        {{ food.name }}
+                                                    </a>
+
+                                                </h4>
+
+
+                                                {% if food.description %}
+
+                                                    <p>
+                                                        {{ food.description|truncatewords:15 }}
+                                                    </p>
+
+                                                {% endif %}
+
+
+                                                <div class="food-bottom">
+
+                                                    <div class="food-price">
+
+                                                        {% if food.discount_price %}
+
+                                                            <span class="old-price">
+                                                                {{ currency }} {{ food.price }}
+                                                            </span>
+
+                                                            <strong>
+                                                                {{ currency }} {{ food.discount_price }}
+                                                            </strong>
+
+                                                        {% else %}
+
+                                                            <strong>
+                                                                {{ currency }} {{ food.price }}
+                                                            </strong>
+
+                                                        {% endif %}
+
+                                                    </div>
+
+
+                                                    <form method="post" action="{% url 'add_to_cart' food.id %}" class="action-form">{% csrf_token %}<button type="submit" 
+                                                        
+                                                        class="add-food-btn"
+                                                    >
+                                                        + Add
+                                                    </button></form>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+                        {% else %}
+
+                            <p class="no-food">
+                                No food items available in this category.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-menu">
+
+                <h3>
+                    Menu Coming Soon
+                </h3>
+
+                <p>
+                    This restaurant hasn't added its menu yet.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'restaurants' %}">
+                        Restaurants
+                    </a>
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    {{ restaurant.phone }}
+                </p>
+
+                <p>
+                    {{ restaurant.email }}
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

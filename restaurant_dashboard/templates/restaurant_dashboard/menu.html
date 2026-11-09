@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="restaurant-menu-management">
+
+    <div class="menu-management-header">
+
+        <div>
+            <h1>Menu Management</h1>
+
+            <p>
+                Add, edit and manage your food items.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'add_food' %}"
+            class="add-food-dashboard-btn"
+        >
+            + Add Food
+        </a>
+
+    </div>
+
+
+    {% if messages %}
+
+        <div class="messages-container">
+
+            {% for message in messages %}
+
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+    {% if foods %}
+
+        <div class="dashboard-food-grid">
+
+            {% for food in foods %}
+
+                <div class="dashboard-food-card">
+
+
+                    {% if food.image %}
+
+                        <img
+                            src="{{ food.image.url }}"
+                            alt="{{ food.name }}"
+                            class="dashboard-food-image"
+                        >
+
+                    {% else %}
+
+                        <div class="dashboard-food-placeholder">
+                            🍽️
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="dashboard-food-content">
+
+                        <span class="dashboard-food-restaurant">
+                            {{ food.restaurant.name }}
+                        </span>
+
+
+                        <h3>
+                            {{ food.name }}
+                        </h3>
+
+
+                        <p class="dashboard-food-category">
+                            {{ food.category.name }}
+                        </p>
+
+
+                        {% if food.description %}
+
+                            <p class="dashboard-food-description">
+                                {{ food.description|truncatewords:15 }}
+                            </p>
+
+                        {% endif %}
+
+
+                        <div class="dashboard-food-price">
+
+                            {% if food.discount_price %}
+
+                                <span class="dashboard-old-price">
+                                    {{ currency }} {{ food.price }}
+                                </span>
+
+                                <strong>
+                                    {{ currency }} {{ food.discount_price }}
+                                </strong>
+
+                            {% else %}
+
+                                <strong>
+                                    {{ currency }} {{ food.price }}
+                                </strong>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="food-availability">
+
+                            {% if food.is_available %}
+
+                                <span class="available-badge">
+                                    Available
+                                </span>
+
+                            {% else %}
+
+                                <span class="unavailable-badge">
+                                    Unavailable
+                                </span>
+
+                            {% endif %}
+
+
+                            {% if food.is_featured %}
+
+                                <span class="featured-badge">
+                                    Featured
+                                </span>
+
+                            {% endif %}
+
+
+                            {% if food.is_today_special %}
+
+                                <span class="special-badge">
+                                    Today's Special
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="dashboard-food-actions">
+
+                            <a
+                                href="{% url 'edit_food' food.id %}"
+                                class="edit-food-btn"
+                            >
+                                Edit
+                            </a>
+
+
+                            <form
+                                method="POST"
+                                action="{% url 'delete_food' food.id %}"
+                                onsubmit="return confirm('Are you sure you want to delete this food item?');"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="delete-food-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-menu-management">
+
+            <div class="empty-menu-icon">
+                🍽️
+            </div>
+
+            <h2>
+                No Food Items Yet
+            </h2>
+
+            <p>
+                Start building your menu by adding your first food item.
+            </p>
+
+            <a
+                href="{% url 'add_food' %}"
+                class="add-food-dashboard-btn"
+            >
+                + Add Your First Food
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

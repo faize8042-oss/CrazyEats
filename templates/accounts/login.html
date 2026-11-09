@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-container">
+
+        <h2>
+            Welcome Back
+        </h2>
+
+        <p>
+            Login to your CrazyEats account
+        </p>
+
+
+        <!-- ==========================================
+             LOGIN FORM
+        =========================================== -->
+
+        <form method="POST">
+
+            {% csrf_token %}<input type="hidden" name="next" value="{{ request.GET.next }}">
+
+            {{ form.as_p }}
+
+
+            <button
+                type="submit"
+                class="auth-btn"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- ==========================================
+             FORGOT PASSWORD
+        =========================================== -->
+
+        <p class="auth-link">
+
+            <a href="{% url 'password_reset' %}">
+                Forgot your password?
+            </a>
+
+        </p>
+
+
+        <!-- ==========================================
+             REGISTER
+        =========================================== -->
+
+        <p class="auth-link">
+
+            Don't have an account?
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

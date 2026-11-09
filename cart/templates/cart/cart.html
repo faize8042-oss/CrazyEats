@@ -1,0 +1,456 @@
+{% if restaurant_conflict %}
+
+<div class="cart-warning">
+
+    <h3>
+        Different Restaurant
+    </h3>
+
+    <p>
+        Your cart already contains food from another restaurant.
+        Please clear your current cart before adding food from
+        {{ new_food.restaurant.name }}.
+    </p>
+
+    <a
+            href="{% url 'cart' %}"
+            class="cart-warning-btn"
+    >
+        Go Back to Cart
+    </a>
+
+</div>
+
+{% endif %}
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Cart | CrazyEats</title>
+
+    <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a href="/" class="logo">
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a
+                    href="/profile/"
+                    class="login-btn"
+            >
+                Profile
+            </a>
+
+            <a
+                    href="/logout/"
+                    class="signup-btn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     CART
+========================================== -->
+
+<section class="cart-page">
+
+    <div class="container">
+
+        <h1>
+            Your Cart
+        </h1>
+
+
+        {% if cart_items %}
+
+
+        <div class="cart-layout">
+
+
+            <!-- ==================================
+                 CART ITEMS
+            =================================== -->
+
+            <div class="cart-items">
+
+
+                {% for item in cart_items %}
+
+                <div class="cart-item">
+
+
+                    <!-- Food Image -->
+
+                    <div class="cart-item-image">
+
+                        {% if item.food.image %}
+
+                        <img
+                                src="{{ item.food.image.url }}"
+                                alt="{{ item.food.name }}"
+                        >
+
+                        {% else %}
+
+                        <div class="cart-food-placeholder">
+                            🍽️
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Food Information -->
+
+                    <div class="cart-item-info">
+
+                        <h3>
+                            {{ item.food.name }}
+                        </h3>
+
+
+                        <p class="cart-restaurant">
+
+                            {{ item.food.restaurant.name }}
+
+                        </p>
+
+
+                        <div class="cart-price">
+
+                            {% if item.food.discount_price %}
+
+                            <span class="old-price">
+                                            {{ currency }} {{ item.food.price }}
+                                        </span>
+
+                            <strong>
+                                {{ currency }} {{ item.food.discount_price }}
+                            </strong>
+
+                            {% else %}
+
+                            <strong>
+                                {{ currency }} {{ item.food.price }}
+                            </strong>
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Quantity -->
+
+                    <div class="quantity-controls">
+
+                        <form method="post" action="{% url 'decrease_cart_item' item.id %}" class="action-form">{% csrf_token %}<button type="submit" 
+                                
+                                class="quantity-btn"
+                        >
+                            −
+                        </button></form>
+
+
+                        <span class="quantity">
+                                    {{ item.quantity }}
+                                </span>
+
+
+                        <form method="post" action="{% url 'increase_cart_item' item.id %}" class="action-form">{% csrf_token %}<button type="submit" 
+                                
+                                class="quantity-btn"
+                        >
+                            +
+                        </button></form>
+
+                    </div>
+
+
+                    <!-- Item Total -->
+
+                    <div class="cart-item-total">
+
+                        {% if item.food.discount_price %}
+
+                        {{ currency }}
+                        {% widthratio item.food.discount_price 1 item.quantity %}
+
+                        {% else %}
+
+                        {{ currency }}
+                        {% widthratio item.food.price 1 item.quantity %}
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Remove -->
+
+                    <form method="post" action="{% url 'remove_cart_item' item.id %}" class="action-form">{% csrf_token %}<button type="submit" 
+                            
+                            class="remove-item"
+                    >
+                        ✕
+                    </button></form>
+
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+            <!-- ==========================================
+   ORDER SUMMARY
+========================================== -->
+
+            <div class="cart-summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div class="summary-row">
+
+        <span>
+            Subtotal
+        </span>
+
+                    <strong>
+                        {{ currency }} {{ subtotal }}
+                    </strong>
+
+                </div>
+
+
+                {% if discount > 0 %}
+
+                <div class="summary-row discount-row">
+
+            <span>
+                Discount
+            </span>
+
+                    <strong>
+                        - {{ currency }} {{ discount }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="summary-row">
+
+        <span>
+            Delivery Fee
+        </span>
+
+                    <strong>
+                        {{ currency }} {{ delivery_fee }}
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="summary-total">
+
+        <span>
+            Total
+        </span>
+
+                    <strong>
+                        {{ currency }} {{ total }}
+                    </strong>
+
+                </div>
+
+
+                {% if cart_items %}
+
+                <a
+                        href="{% url 'checkout' %}"
+                        class="checkout-btn"
+                >
+                    Proceed to Checkout
+                </a>
+
+                {% endif %}
+
+
+            </div>
+            <!-- ==================================
+                 EMPTY CART
+            =================================== -->
+
+            <div class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    🛒
+                </div>
+
+
+                <h2>
+                    Your cart is empty
+                </h2>
+
+
+                <p>
+                    Looks like you haven't added anything yet.
+                </p>
+
+
+                <a
+                        href="{% url 'restaurants' %}"
+                        class="signup-btn"
+                >
+                    Browse Restaurants
+                </a>
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    Home
+                </p>
+
+                <p>
+                    Restaurants
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Customer Support
+                </h3>
+
+                <p>
+                    Contact us anytime.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

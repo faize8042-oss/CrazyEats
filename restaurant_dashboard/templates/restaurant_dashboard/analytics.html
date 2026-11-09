@@ -1,0 +1,633 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="restaurant-analytics-page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <div class="analytics-header">
+
+        <div>
+
+            <p class="dashboard-label">
+                Restaurant Analytics
+            </p>
+
+            <h1>
+                {{ restaurant.name }}
+            </h1>
+
+            <p>
+                Monitor your restaurant performance,
+                sales and customer orders.
+            </p>
+
+        </div>
+
+
+        <a
+                href="{% url 'restaurant_dashboard' %}?restaurant={{ restaurant.id }}"
+                class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- =========================================
+         RESTAURANT SELECTOR
+    ========================================== -->
+
+    {% if restaurants|length > 1 %}
+
+    <div class="restaurant-selector">
+
+        <label for="restaurant-select">
+            Select Restaurant
+        </label>
+
+
+        <select
+                id="restaurant-select"
+                onchange="changeRestaurant(this.value)"
+        >
+
+            {% for item in restaurants %}
+
+            <option
+                    value="{{ item.id }}"
+                    {% if restaurant and item.id == restaurant.id %}
+                    selected
+                    {% endif %}
+            >
+                {{ item.name }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+
+    <script>
+
+        function changeRestaurant(id) {
+
+            window.location.href =
+                "{% url 'restaurant_analytics' %}?restaurant=" + id;
+
+        }
+
+    </script>
+
+    {% endif %}
+
+
+    <!-- =========================================
+         MAIN STATISTICS
+    ========================================== -->
+
+    <div class="analytics-grid">
+
+
+        <!-- TOTAL ORDERS -->
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                📦
+            </div>
+
+            <div>
+
+                <span>
+                    Total Orders
+                </span>
+
+                <h2>
+                    {{ total_orders }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL REVENUE -->
+
+        <div class="analytics-card revenue-card">
+
+            <div class="analytics-icon">
+                💰
+            </div>
+
+            <div>
+
+                <span>
+                    Total Revenue
+                </span>
+
+                <h2>
+                    {{ currency }} {{ total_revenue|floatformat:2 }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- AVERAGE ORDER -->
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                🛒
+            </div>
+
+            <div>
+
+                <span>
+                    Average Order
+                </span>
+
+                <h2>
+                    {{ currency }} {{ average_order_value|floatformat:2 }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- DELIVERED -->
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <span>
+                    Delivered
+                </span>
+
+                <h2>
+                    {{ delivered_orders }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- CANCELLED -->
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                ❌
+            </div>
+
+            <div>
+
+                <span>
+                    Cancelled
+                </span>
+
+                <h2>
+                    {{ cancelled_orders }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER STATUS
+    ========================================== -->
+
+    <section class="analytics-section">
+
+        <div class="analytics-section-header">
+
+            <div>
+
+                <h2>
+                    Order Status
+                </h2>
+
+                <p>
+                    Current order distribution.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-grid">
+
+
+            <!-- PENDING -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <h2>
+                        {{ pending_orders }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRMED -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <span>
+                        Confirmed
+                    </span>
+
+                    <h2>
+                        {{ confirmed_orders }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREPARING -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-icon">
+                    👨‍🍳
+                </div>
+
+                <div>
+
+                    <span>
+                        Preparing
+                    </span>
+
+                    <h2>
+                        {{ preparing_orders }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- OUT FOR DELIVERY -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-icon">
+                    🛵
+                </div>
+
+                <div>
+
+                    <span>
+                        Out for Delivery
+                    </span>
+
+                    <h2>
+                        {{ out_for_delivery_orders }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         REVENUE CHART
+    ========================================== -->
+
+    <section class="analytics-chart-section">
+
+        <div class="analytics-section-header">
+
+            <div>
+
+                <h2>
+                    Revenue — Last 7 Days
+                </h2>
+
+                <p>
+                    Revenue from delivered orders.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-chart-container">
+
+            <canvas id="revenueChart"></canvas>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ORDERS CHART
+    ========================================== -->
+
+    <section class="analytics-chart-section">
+
+        <div class="analytics-section-header">
+
+            <div>
+
+                <h2>
+                    Orders — Last 7 Days
+                </h2>
+
+                <p>
+                    Number of orders received each day.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-chart-container">
+
+            <canvas id="ordersChart"></canvas>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         POPULAR FOODS
+    ========================================== -->
+    <section class="popular-foods-section">
+
+        <div class="analytics-section-header">
+
+            <div>
+
+                <h2>
+                    Popular Food Items
+                </h2>
+
+                <p>
+                    Most ordered food items from delivered orders.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if popular_foods %}
+
+        <div class="popular-food-list">
+
+            {% for food in popular_foods %}
+
+            <div class="popular-food-item">
+
+                <div class="popular-food-rank">
+                    {{ forloop.counter }}
+                </div>
+
+
+                <div class="popular-food-name">
+
+                    <strong>
+                        {{ food.name }}
+                    </strong>
+
+                    <span>
+                    Ordered items
+                </span>
+
+                </div>
+
+
+                <div class="popular-food-quantity">
+
+                    {{ food.quantity }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <div class="no-popular-foods">
+
+            <p>
+                No delivered food orders are available yet.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================
+     CHART.JS
+========================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+    /*
+    =========================================
+    REVENUE DATA
+    =========================================
+    */
+
+    const revenueLabels = {{ revenue_labels|safe }};
+
+    const revenueValues = {{ revenue_values|safe }};
+
+
+    /*
+    =========================================
+    REVENUE CHART
+    =========================================
+    */
+
+    const revenueCanvas =
+        document.getElementById("revenueChart");
+
+
+    new Chart(
+        revenueCanvas,
+        {
+            type: "line",
+
+            data: {
+
+                labels: revenueLabels,
+
+                datasets: [
+
+                    {
+                        label: "Revenue ({{ currency }})",
+
+                        data: revenueValues,
+
+                        tension: 0.3,
+
+                        fill: false
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+    =========================================
+    ORDERS DATA
+    =========================================
+    */
+
+    const orderLabels =
+        {{ order_labels|safe }};
+
+    const orderValues =
+        {{ order_values|safe }};
+
+
+    /*
+    =========================================
+    ORDERS CHART
+    =========================================
+    */
+
+    const ordersCanvas =
+        document.getElementById("ordersChart");
+
+
+    new Chart(
+        ordersCanvas,
+        {
+            type: "bar",
+
+            data: {
+
+                labels: orderLabels,
+
+                datasets: [
+
+                    {
+                        label: "Orders",
+
+                        data: orderValues
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+
+                            precision: 0
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+</script>
+
+{% endblock %}

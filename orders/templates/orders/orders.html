@@ -1,0 +1,525 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Orders | CrazyEats
+    </title>
+
+    <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <a
+                href="{% url 'home' %}"
+                class="logo"
+        >
+            CrazyEats
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{% url 'restaurants' %}">
+                    Restaurants
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{% url 'orders' %}">
+                    My Orders
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a
+                    href="{% url 'profile' %}"
+                    class="login-btn"
+            >
+                Profile
+            </a>
+
+
+            <form method="post" action="{% url 'logout' %}" class="action-form">{% csrf_token %}<button type="submit" 
+                    
+                    class="signup-btn"
+            >
+                Logout
+            </button></form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     MY ORDERS
+========================================== -->
+
+<section class="orders-page">
+
+    <div class="container">
+
+
+        <!-- ==================================
+             PAGE HEADER
+        =================================== -->
+
+        <div class="orders-header">
+
+            <h1>
+                My Orders
+            </h1>
+
+            <p>
+                View your previous and current orders.
+            </p>
+
+        </div>
+
+
+        {% if orders %}
+
+
+        <!-- ==================================
+             ORDERS LIST
+        =================================== -->
+
+        <div class="orders-list">
+
+
+            {% for order in orders %}
+
+
+            <div class="order-history-card">
+
+
+                <!-- ==================================
+                     ORDER HEADER
+                =================================== -->
+
+                <div class="order-history-header">
+
+                    <div>
+
+                        <h2>
+                            Order #{{ order.id }}
+                        </h2>
+
+                        <p>
+                            {{ order.created_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         ORDER STATUS
+                    =================================== -->
+
+                    <div>
+
+                        {% if order.status == "pending" %}
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+
+                        {% elif order.status == "confirmed" %}
+
+                        <span class="status confirmed">
+                            Confirmed
+                        </span>
+
+
+                        {% elif order.status == "preparing" %}
+
+                        <span class="status preparing">
+                            Preparing
+                        </span>
+
+
+                        {% elif order.status == "out_for_delivery" %}
+
+                        <span class="status delivery">
+                            Out for Delivery
+                        </span>
+
+
+                        {% elif order.status == "delivered" %}
+
+                        <span class="status delivered">
+                            Delivered
+                        </span>
+
+
+                        {% elif order.status == "cancelled" %}
+
+                        <span class="status cancelled">
+                            Cancelled
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     RESTAURANT
+                =================================== -->
+
+                <div class="order-history-restaurant">
+
+                    <strong>
+                        {{ order.restaurant.name }}
+                    </strong>
+
+                    <span>
+                        {{ order.restaurant.address }}
+                    </span>
+
+                </div>
+
+
+                <!-- ==================================
+                     ORDER SUMMARY
+                =================================== -->
+
+                <div class="order-history-summary">
+
+
+                    <!-- TOTAL -->
+
+                    <div>
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            {{ order.currency }} {{ order.total|floatformat:2 }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PAYMENT STATUS -->
+
+                    <div class="payment-status">
+
+                        <span>
+                            Payment
+                        </span>
+
+
+                        {% if order.payment_status == "paid" %}
+
+                        <strong class="payment-paid">
+                            ✓ Paid
+                        </strong>
+
+
+                        {% elif order.payment_status == "failed" %}
+
+                        <strong class="payment-failed">
+                            ✕ Failed
+                        </strong>
+
+
+                        {% else %}
+
+                        <strong class="payment-pending">
+                            ⏳ Pending
+                        </strong>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PAYMENT METHOD -->
+
+                    {% if order.payment %}
+
+                    <div class="payment-method">
+
+                        <span>
+                            Method
+                        </span>
+
+                        <strong>
+                            {{ order.payment.get_payment_method_display }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- ==================================
+                     DELIVERY INFORMATION
+                =================================== -->
+
+                <div class="order-history-delivery">
+
+                    <div>
+
+                        <span>
+                            Delivery Phone
+                        </span>
+
+                        <strong>
+                            {{ order.delivery_phone }}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Delivery Address
+                        </span>
+
+                        <strong>
+                            {{ order.delivery_address }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     ACTIONS
+                =================================== -->
+
+                <div class="order-history-actions">
+
+
+                    <!-- VIEW DETAILS -->
+
+                    <a
+                            href="{% url 'order_detail' order.id %}"
+                            class="primary-btn"
+                    >
+                        View Details
+                    </a>
+
+
+                    <!-- TRACK ORDER -->
+
+                    {% if order.status != "delivered" and order.status != "cancelled" %}
+
+                    <a
+                            href="{% url 'track_order' %}?order_id={{ order.id }}"
+                            class="secondary-btn"
+                    >
+                        Track Order
+                    </a>
+
+                    {% endif %}
+
+
+                    <!-- ORDER AGAIN -->
+
+                    {% if order.status == "delivered" %}
+
+                    <a
+                            href="{% url 'restaurants' %}"
+                            class="secondary-btn"
+                    >
+                        Order Again
+                    </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ==================================
+             EMPTY ORDERS
+        =================================== -->
+
+        <div class="empty-orders">
+
+            <div class="empty-orders-icon">
+                🛍️
+            </div>
+
+
+            <h2>
+                No Orders Yet
+            </h2>
+
+
+            <p>
+                You haven't placed any orders yet.
+            </p>
+
+
+            <a
+                    href="{% url 'restaurants' %}"
+                    class="primary-btn"
+            >
+                Browse Restaurants
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <!-- BRAND -->
+
+            <div>
+
+                <h3>
+                    CrazyEats
+                </h3>
+
+                <p>
+                    Delicious food delivered to your door.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <p>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'restaurants' %}">
+                        Restaurants
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'orders' %}">
+                        My Orders
+                    </a>
+                </p>
+
+            </div>
+
+
+            <!-- SUPPORT -->
+
+            <div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <p>
+                    Contact us anytime.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

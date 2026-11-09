@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Restaurants
+{% endblock %}
+
+{% block content %}<div class="container management-search"><form method="get"><label for="restaurant-search">Search restaurants or dishes</label><input id="restaurant-search" name="q" value="{{ q }}"><label for="category-filter">Category</label><input id="category-filter" name="category" value="{{ selected_category }}"><label><input type="checkbox" name="open" value="1" {% if request.GET.open == '1' %}checked{% endif %}> Open now</label><button>Search</button></form></div>
+
+<section class="restaurants-page">
+
+    <div class="container">
+
+        <h1>Discover Restaurants</h1>
+
+        <p class="section-subtitle">
+
+            Find your favorite restaurant.
+
+        </p>
+
+        <div class="restaurant-search">
+
+            <input
+                    type="text"
+                    placeholder="Search restaurants...">
+
+            <button>
+
+                Search
+
+            </button>
+
+        </div>
+
+        <div class="restaurant-filters">
+
+            <button class="active">All</button>
+
+            <button>Pizza</button>
+
+            <button>Burger</button>
+
+            <button>Chinese</button>
+
+            <button>Desserts</button>
+
+            <button>Pakistani</button>
+
+        </div>
+
+        <div class="restaurant-grid">
+
+            {% for restaurant in restaurants %}
+
+            <div class="restaurant-card">
+
+                {% if restaurant.cover_image %}
+
+                <img
+                        src="{{ restaurant.cover_image.url }}"
+                        alt="{{ restaurant.name }}"
+                >
+
+                {% elif restaurant.logo %}
+
+                <img
+                        src="{{ restaurant.logo.url }}"
+                        alt="{{ restaurant.name }}"
+                >
+
+                {% else %}
+
+                <div class="restaurant-placeholder">
+                    🍽️
+                </div>
+
+                {% endif %}
+
+
+                <div class="restaurant-info">
+
+                    <h3>
+                        {{ restaurant.name }}
+                    </h3>
+
+                    {% if restaurant.description %}
+                    <p>
+                        {{ restaurant.description }}
+                    </p>
+                    {% endif %}
+
+                    <p>
+                        📍 {{ restaurant.address }}
+                    </p>
+
+                    <p>
+                        ⭐ {{ restaurant.rating }}
+                    </p>
+
+
+                    {% if restaurant.is_open %}
+
+                    <span class="restaurant-status open">
+                Open
+            </span>
+
+                    {% else %}
+
+                    <span class="restaurant-status closed">
+                Closed
+            </span>
+
+                    {% endif %}
+
+
+                    <a
+                            href="{% url 'restaurant_detail' restaurant.id %}"
+                            class="restaurant-btn"
+                    >
+                        View Restaurant
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-restaurants">
+
+                <h3>No restaurants available</h3>
+
+                <p>
+                    We're currently adding restaurants.
+                    Please check back soon.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

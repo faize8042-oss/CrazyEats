@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    env_file: ${CRAZYEATS_ENV_FILE:-.env}
+    volumes:
+      - database:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: ${CRAZYEATS_ENV_FILE:-.env}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os,urllib.request; h=os.environ['DJANGO_ALLOWED_HOSTS'].split(',')[0]; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8000/health/', headers={'Host':h,'X-Forwarded-Proto':'https'}),timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - media:/app/media
+      - static:/app/staticfiles
+  notifications:
+    build: .
+    restart: unless-stopped
+    env_file: ${CRAZYEATS_ENV_FILE:-.env}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["python", "manage.py", "run_notification_worker"]
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    env_file: ${CRAZYEATS_ENV_FILE:-.env}
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - media:/srv/media:ro
+      - static:/srv/static:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  database:
+  media:
+  static:
+  caddy_data:
+  caddy_config:

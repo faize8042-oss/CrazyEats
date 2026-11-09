@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Remove Food | CrazyEats</title>
+
+    {% load static %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+{% include "includes/demo_banner.html" %}
+{% include "includes/messages.html" %}
+
+<div class="container">
+
+    <h1>Remove Food</h1>
+
+    <p>
+        Are you sure you want to remove
+        <strong>{{ food.name }}</strong>
+        from your menu?
+    </p>
+
+   <p>
+    This food will no longer be available to customers,
+    but previous orders will remain safely stored in the system.
+</p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Remove Food
+        </button>
+
+        <a href="{% url 'restaurant_menu' %}">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

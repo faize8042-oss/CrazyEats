@@ -1,0 +1,31 @@
+name: CrazyEats tests
+on: [push, pull_request]
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: crazyeats
+          POSTGRES_USER: crazyeats
+          POSTGRES_PASSWORD: local-ci-only
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U crazyeats -d crazyeats"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      POSTGRES_DB: crazyeats
+      POSTGRES_USER: crazyeats
+      POSTGRES_PASSWORD: local-ci-only
+      POSTGRES_HOST: localhost
+      DJANGO_DEBUG: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python -m pip install -r requirements.txt
+      - run: python manage.py makemigrations --check --dry-run
+      - run: python manage.py test --verbosity 2
+      - run: docker build -t crazyeats-ci .
